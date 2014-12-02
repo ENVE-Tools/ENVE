@@ -42,10 +42,10 @@ preferred Version : >= V.2.21.0
 
 The following commands will install bedtools in a local directory on an UNIX or OS X machine. Note that the “” refers to the latest posted version number on
 
-$ curl http://bedtools.googlecode.com/files/BEDTools..tar.gz > BEDTools.tar.gz
-*$ tar -zxvf BEDTools.tar.gz
-*$ cd BEDTools-
-*$ make
+* $ curl http://bedtools.googlecode.com/files/BEDTools..tar.gz > BEDTools.tar.gz
+* $ tar -zxvf BEDTools.tar.gz
+* $ cd BEDTools-
+* $ make
 
 For more information : http://bedtools.readthedocs.org/en/latest/content/installation.html
 
