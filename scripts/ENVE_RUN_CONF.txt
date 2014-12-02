@@ -1,0 +1,16 @@
+# Change the parameters to true if you want to do perform operation on Normal-Normal paired data or Tumor-Normal paired data or both
+NormNorm <- TRUE
+TumNorm <- FALSE
+
+
+#Change the following parameter to TRUE if working on Whole Genome Sequences
+
+Whole_Exome <<- TRUE
+
+
+
+
+# Change the directory to the results obtained from prENVE module 
+
+Input_NormNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
+Input_TumNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'

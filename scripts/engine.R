@@ -172,7 +172,7 @@ filtCDS <- function(x,y)
   cn_called_files = called.files
   
   ##### FILTER WINDOWS TO THOSE THAT FALL WITHIN CODING REGIONS ######
-  if(WGS)
+  if(Whole_Exome)
   {
   for (i in 1:length(cn_called_files)) {
     sys_cmd = paste("awk 'NR>1' ", cn_called_files[i], " | sed 's/ //g' | ",IntersectBED_path," -a stdin -b ",paste(supFiles,"RefSeqGTF/RefSeq_hg19_Feb2009.gtf.CDS.nospace.bed.txt",sep='/')," -f 0.6 -u > ",paste(y,paste(cn_called_files[i],".FiltCDS",sep=""),sep='/'), sep="")
@@ -225,9 +225,9 @@ Com_samp_perchr <- function(x,y)
     chr_out = NULL
     for (i in 1:length(cn_called_files)) {
       filcna = cn_called_files[i]
-      filcna2 <<- unlist(strsplit(filcna, split="\\_|\\."))[c(6)]
+      filcna2 <<- unlist(strsplit(filcna, split="\\_|\\.|\\-"))[c(6)]
       if (chrs[j] != "chrX" & chrs[j] != "chrY"){
-        sampcna = paste(unlist(strsplit(filcna, split="\\_|\\."))[c(2,4,6)], collapse="_")
+        sampcna = paste(unlist(strsplit(filcna, split="\\_|\\.|\\-"))[c(2,4,6)], collapse="_")
         #setwd("/Projects/ENVE/temp/VarScan_CNA/NormalNormal")
         segs.all.chr <- read.table(paste(sampcna, "CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt", sep="_"),header=F, sep="\t")
         ind_chr = which(segs.all.chr[,1]==chrs[j])
@@ -235,7 +235,7 @@ Com_samp_perchr <- function(x,y)
         chr_out = rbind(chr_out, samp_chr_out)
       }else if(chrs[j] =="chrX"){
         if(filcna2 == "MaleMale" | filcna2 == "FemaleFemale"){
-          sampcna = paste(unlist(strsplit(filcna, split="\\_|\\."))[c(2,4,6)], collapse="_")
+          sampcna = paste(unlist(strsplit(filcna, split="\\_|\\.|\\-"))[c(2,4,6)], collapse="_")
           segs.all.chr <- read.table(paste(sampcna, "CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt", sep="_"),header=F, sep="\t")
           ind_chr = which(segs.all.chr[,1]==chrs[j])
           samp_chr_out =  cbind(matrix(data=sampcna, nrow = length(ind_chr), ncol=1), segs.all.chr[ind_chr,])
@@ -243,15 +243,14 @@ Com_samp_perchr <- function(x,y)
           }
       }else if(chrs[j] == "chrY"){
         if(filcna2 == "MaleMale"){
-          sampcna = paste(unlist(strsplit(filcna, split="\\_|\\."))[c(2,4,6)], collapse="_")
+          sampcna = paste(unlist(strsplit(filcna, split="\\_|\\.|\\-"))[c(2,4,6)], collapse="_")
           segs.all.chr <- read.table(paste(sampcna, "CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt", sep="_"),header=F, sep="\t")
           ind_chr = which(segs.all.chr[,1]==chrs[j])
           samp_chr_out =  cbind(matrix(data=sampcna, nrow = length(ind_chr), ncol=1), segs.all.chr[ind_chr,])
           chr_out = rbind(chr_out, samp_chr_out)
         }
       }
-    } # sample loop
-    #setwd("/Projects/ENVE/temp/VarScan_CNA/nor_nor_all_chr")
+    }
     write.table(chr_out, file=paste(y,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
   }
   ##### END Combine All Samples per chromosome ######
