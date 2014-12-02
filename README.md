@@ -1,7 +1,7 @@
 ENVE
 ====
 
-Introduction
+====Introduction====
 
 ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way.
 
@@ -13,9 +13,11 @@ The key features of ENVE include
 * Modeling extreme deviations of chromosome-specific LogRatios associated with inherent noise within the diploid normal-normal comparisons by using a generalized extreme value distribution.
 * By use of these learned model parameters, to evaluate somatic copy-number alterations in tumor samples. 
 
-System Requirements
+#############################################################################################
 
-Platforms and System Requirements
+====System Requirements====
+
+==Platforms and System Requirements==
 
 The module performance was tested on two platforms
 
@@ -25,11 +27,11 @@ The performance of the script depends on the available memory and number of core
 
 Hard Disk Space : The module needs around 30 MB of Hard Disk space
 
-Software Architecture
+==Software Architecture==
 
 The script was developed on the R platform with version 3.1, and it is assumed that the user also use the same for running the script.
 
-Software Requirements
+==Software Requirements==
 
 R : Free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms. 
 preferred Version : >= 3.1
@@ -44,8 +46,9 @@ $ cd BEDTools-
 $ make
 For more information : http://bedtools.readthedocs.org/en/latest/content/installation.html
 
+#############################################################################################
 
-Installation And Running Tool
+====Installation And Running Tool====
 
 Download the ENVE-1.0 repository
 In subdirectory scripts one need to edit two files
@@ -59,10 +62,12 @@ $ R CMD BATCH ENVE.R
 
 The results file be stored in analysis folder with the analysis name with timestamp. all the required and intermediate files can be found in temp folder.
 
+#############################################################################################
 
-Understanding the Results
 
-Important Files
+====Understanding the Results====
+
+==Important Files==
 
 Tiff Files
 location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/Tiff_output
