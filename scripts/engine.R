@@ -426,7 +426,7 @@ Nor_EVD_calc <- function()
   
   EVD_params_per_chr = NULL
   
-  for (chrind in 1:(length(chrs)-2)) {
+  for (chrind in 1:(length(chrs))) {
     #chrind = 6
     chr_out_n = NULL
     inds_large_segs_n = NULL
@@ -486,7 +486,7 @@ TumEVD_cal <- function()
   pval_sig = 1
   
   
-  for (chrind in 1:(length(chrs)-2)) {
+  for (chrind in 1:(length(chrs))) {
     chr_out_t = NULL
     inds_large_segs_t = NULL
     evd_vals_max = NULL
@@ -518,12 +518,12 @@ TumEVD_cal <- function()
   
   #####combine all chrs CNA into single sheet######### 
   All_Chrs_All_Samps_CNA = NULL
-  for (chrind in 1:(length(chrs)-2)) {
+  for (chrind in 1:(length(chrs))) {
     fil_in=paste(anaEVDPVal_AS,paste(chrs[chrind], "_MinSeg_", as.character(min_seg), "_EVDPVal_AllSamps.txt", sep=""),sep='/')
     tmp = read.table(file=fil_in, sep="\t", header=T)
     All_Chrs_All_Samps_CNA = rbind(All_Chrs_All_Samps_CNA, as.matrix(tmp))
   }
-  write.table(All_Chrs_All_Samps_CNA, file=paste(anaRes,paste("AllChrs", "_MinSeg_", as.character(min_seg), "_EVDPVal_AllSamps.txt", sep=""),sep='/'), sep="\t", row.names=F, col.names=T, quote=F, eol = "\n")
+  write.table(All_Chrs_All_Samps_CNA, file=paste(anaRes,"Results.txt",sep='/'), sep="\t", row.names=F, col.names=T, quote=F, eol = "\n")
 }
 
 ##############################################
