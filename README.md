@@ -22,8 +22,9 @@ In this guide we provide easy to follow instructions for installing the ENVE mod
 
 The module performance was tested on two platforms
 
-2.8 GHz Intel Core i7 processor with 8 GB of RAM iMac machine
-32-core 2.10 GHz Intel(R) Xeon(R) CPU E5-2450 with 64 GB linux machine
+* 2.8 GHz Intel Core i7 processor with 8 GB of RAM iMac machine
+* 32-core 2.10 GHz Intel(R) Xeon(R) CPU E5-2450 with 64 GB linux machine
+
 The performance of the script depends on the available memory and number of cores used. on iMac machine 30 samples( 435 Normal Normal pairs) were processed in around 10 hrs. The performance on the multiple core high RAM machine it was less than couple of hours.
 
 Hard Disk Space : The module needs around 30 MB of Hard Disk space
