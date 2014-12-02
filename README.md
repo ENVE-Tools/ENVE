@@ -60,8 +60,8 @@ ENVE_CONF.txt : this file contains a field which points to the intersectBed tool
 ENVE_RUN_CONF.TXT : This file consist of information required for running the batch. Paths to the Normal Normal Paired data (*.out.called) files needed to be provided, The text file also asks user if one is running Whole exome data and If wants to run both Normal-Normal ENVE module and Tumor-Normal module together.
 To Run the ENVE Module
 
-$ cd directory/to/ENVE 
-$ R CMD BATCH ENVE.R
+* $ cd directory/to/ENVE 
+* $ R CMD BATCH ENVE.R
 
 The results file be stored in analysis folder with the analysis name with timestamp. all the required and intermediate files can be found in temp folder.
 
