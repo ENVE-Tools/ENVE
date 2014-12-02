@@ -27,9 +27,6 @@ dir_create()
 ############################################################################
 chr_lengths <- chr_proc()
 ############################################################################
-segval_windows = NULL
-segval_windows = seq(0, 1, 0.05)
-min_seg = 50
 anaTempVScanNNres <- Input_NormNorm_Outcalled_files
 #anaTempVScanNNres <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
 setwd(anaTempVScanNNres)
