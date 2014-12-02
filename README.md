@@ -3,15 +3,16 @@ ENVE Version 1.0
 
 ====Introduction====
 
-ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way.
-
-In this guide we provide easy to follow instructions for installing the ENVE module and running the results from prENVE. which usually takes the Bam files and do pair wise comparison to find the log ratios in the form of *.out.called files. 
+ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way. The ENVE methodology, in general, consists of two major modules, which include capturing and modeling the inherent noise (sample- and technical-associated variability) in whole-exome sequencing data using non-tumor diploid normal samples, followed by utilizing the learned model parameters to reliably detect somatic copy-number alterations in tumors.
 
 The key features of ENVE include 
 * Empirical quantification inherent noise in WES data using random normal-normal combinations of diploid samples.
 * Use of three independent measures to differentiate between segmental LogRatio variations associated with inherent noise versus germline CNVs within these normal-normal comparisons.
 * Modeling extreme deviations of chromosome-specific LogRatios associated with inherent noise within the diploid normal-normal comparisons by using a generalized extreme value distribution.
 * By use of these learned model parameters, to evaluate somatic copy-number alterations in tumor samples. 
+
+
+In this guide we provide easy to follow instructions for installing the ENVE module and running the results from prENVE. which usually takes the Bam files and do pair wise comparison to find the log ratios in the form of *.out.called files. 
 
 ==============================================================================================================================
 
