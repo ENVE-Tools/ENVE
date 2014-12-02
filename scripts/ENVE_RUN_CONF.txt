@@ -8,9 +8,14 @@ TumNorm <- FALSE
 Whole_Exome <<- TRUE
 
 
-
-
 # Change the directory to the results obtained from prENVE module 
 
 Input_NormNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
 Input_TumNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
+
+
+#
+
+segval_windows = NULL
+segval_windows = seq(0, 1, 0.05)
+min_seg = 50
