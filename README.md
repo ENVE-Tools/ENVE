@@ -13,7 +13,7 @@ The key features of ENVE include
 * Modeling extreme deviations of chromosome-specific LogRatios associated with inherent noise within the diploid normal-normal comparisons by using a generalized extreme value distribution.
 * By use of these learned model parameters, to evaluate somatic copy-number alterations in tumor samples. 
 
-#############################################################################################
+==============================================================================================================================
 
 ====System Requirements====
 
@@ -46,7 +46,7 @@ $ cd BEDTools-
 $ make
 For more information : http://bedtools.readthedocs.org/en/latest/content/installation.html
 
-#############################################################################################
+==============================================================================================================================
 
 ====Installation And Running Tool====
 
@@ -62,7 +62,7 @@ $ R CMD BATCH ENVE.R
 
 The results file be stored in analysis folder with the analysis name with timestamp. all the required and intermediate files can be found in temp folder.
 
-#############################################################################################
+==============================================================================================================================
 
 
 ====Understanding the Results====
