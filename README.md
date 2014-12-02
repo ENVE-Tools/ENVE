@@ -73,16 +73,17 @@ The results file be stored in analysis folder with the analysis name with timest
 ==Important Files==
 
 Tiff Files
-location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/Tiff_output
-these files shows the Absolute LogRatio Thresholds for each chromosome and the segments which are above the threshold.
+*  location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/Tiff_output
+* these files shows the Absolute LogRatio Thresholds for each chromosome and the segments which are above the threshold.
 EVD_cutoff
 
-location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/EVD_cutoff/
-this file includes the Absolute LogRatio Thresholds for each chromosome
-Results.txt
+EVD_Cutoff
+* location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/EVD_cutoff/
+* this file includes the Absolute LogRatio Thresholds for each chromosome
 
-location : analysis/Results/
-This file contains the final ENVE p values of all the segments after removing the noise by the use of Normal Diploid comparisons.
+Results.txt
+* location : analysis/Results/
+* This file contains the final ENVE p values of all the segments after removing the noise by the use of Normal Diploid comparisons.
 
 
 For further documentation or technical support while installing or using the package, kindly mail to sxs1528@case.edu 
