@@ -5,12 +5,9 @@ setwd(prENVE)
 
 
 
-source(paste(prENVE,"Scripts","engine2.R",sep='/'))
-source(paste(prENVE,"Scripts","prENVE_config.R",sep='/'))
-source(paste(prENVE,"Scripts","prENVE_PROJ_Config.R",sep='/'))
-#source("/Projects/prENVE/Scripts/engine.R")
-#source("/Projects/prENVE/Scripts/prENVE_config.R")
-#source("/Projects/prENVE/Scripts/prENVE_PROJ_Config.R")
+source(paste(prENVE,"Scripts","engine.R",sep='/'))
+source(paste(prENVE,"Scripts","prENVE_config.txt",sep='/'))
+source(paste(prENVE,"Scripts","prENVE_PROJ_Config.txt",sep='/'))
 
 
 ####Check_download_install_check all required R/Bioconductor Packages#######
