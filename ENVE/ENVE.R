@@ -27,9 +27,9 @@ dir_create()
 ############################################################################
 chr_lengths <- chr_proc()
 ############################################################################
-anaTempVScanNNres <- Input_NormNorm_adjlogratio_files
-anaTempVScanNNres <- Input_TumNorm_adjlogratio_files
-setwd(anaTempVScanNNres)
+
+
+
 
 
 
@@ -38,7 +38,8 @@ setwd(anaTempVScanNNres)
 
 ############################################################################
 if(NormNorm)
-{    
+{   
+    anaTempVScanNNres <- Input_NormNorm_adjlogratio_files
     cn_called_files = filtCDS(anaTempVScanNNres,anaTempVScanNN_OC_CDSFilt)
     CBS_seg_samp(anaTempVScanNN_OC_CDSFilt,anaTempVScanNN_CBS_GC_crtd)
     Com_samp_perchr(anaTempVScanNN_CBS_GC_crtd,anaTempVScanNN_NorNor_SegMeans_CDSFilt)
@@ -47,6 +48,7 @@ if(NormNorm)
 ############################################################################
 if(TumNorm)
 {
+  anaTempVScanNNres <- Input_TumNorm_adjlogratio_files
   cn_called_files = filtCDS(anaTempVScanTNres,anaTempVScanTN_OC_CDSFilt)
   CBS_seg_samp(anaTempVScanTN_OC_CDSFilt,anaTempVScanTN_CBS_GC_crtd)
   Com_samp_perchr(anaTempVScanTN_CBS_GC_crtd,anaTempVScanTN_TumNor_SegMeans_CDSFilt)
