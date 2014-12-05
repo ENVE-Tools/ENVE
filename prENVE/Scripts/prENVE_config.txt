@@ -6,7 +6,7 @@ hg19_karyo <- '/mnt/Data4/local/exome_processing/lib/exome/gatk/hg19_karyo.fa'
 Bash_Home <- '"#!/bin/bash"'
 
 
-DEBUG=T
-BASH= F
-HPC = F
-Com_Scr = T
+DEBUG=F
+#BASH= F
+#HPC = F
+#Com_Scr = T
