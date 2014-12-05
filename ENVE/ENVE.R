@@ -27,8 +27,8 @@ dir_create()
 ############################################################################
 chr_lengths <- chr_proc()
 ############################################################################
-anaTempVScanNNres <- Input_NormNorm_Outcalled_files
-#anaTempVScanNNres <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
+anaTempVScanNNres <- Input_NormNorm_adjlogratio_files
+anaTempVScanNNres <- Input_TumNorm_adjlogratio_files
 setwd(anaTempVScanNNres)
 
 
