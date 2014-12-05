@@ -161,14 +161,8 @@ chr_proc <- function()
 filtCDS <- function(x,y)
 {
   setwd(x)
-  #setwd(anaTempVScanNNres)
-  called.files = list.files(pattern="out.called")
-  #inds_gc = grep("called.gc", called.files )
-  #inds_homdel = grep("called.homdel", called.files )
-  #cn_called_files = called.files[c(-inds_gc, -inds_homdel)]
-  #inds_FiltCDS = grep("copycaller.FiltCDS", called.files )
-  #cn_called_files = called.files[c(-inds_gc, -inds_homdel, -inds_FiltCDS)]
-  #y <- anaTempVScanNN_OC_CDSFilt
+  setwd(anaTempVScanNNres)
+  called.files = list.files(pattern="adj.logratio")
   cn_called_files = called.files
   
   ##### FILTER WINDOWS TO THOSE THAT FALL WITHIN CODING REGIONS ######
@@ -186,7 +180,7 @@ filtCDS <- function(x,y)
     setwd(y)
     for(i in 1:length(cn_called_files))
     {
-      file.rename(paste(cn_called_files[i],'out.called',sep='.'), paste(cn_called_files[i],'FiltCDS',sep='.'))
+      file.rename(paste(cn_called_files[i],'adj.logratio',sep='.'), paste(cn_called_files[i],'FiltCDS',sep='.'))
     }
   }
   return(cn_called_files)
@@ -207,7 +201,7 @@ CBS_seg_samp <- function(x,y)
     cn <- read.table(filcna,header=F)
     cn = as.matrix(cn)
     cn = str_replace_all(cn, " ", "")
-    CNA.object <-CNA(genomdat = as.numeric(cn[,7]), chrom = cn[,1], maploc = as.numeric(cn[,2]), data.type = 'logratio', sampleid=sampcna)
+    CNA.object <-CNA(genomdat = as.numeric(cn[,4]), chrom = cn[,1], maploc = as.numeric(cn[,2]), data.type = 'logratio', sampleid=sampcna)
     CNA.smoothed <- smooth.CNA(CNA.object)
     segs <- segment(CNA.smoothed, verbose=0, min.width=2, undo.splits = "sdundo", undo.SD=3)
     segs2 = segs$output
@@ -228,7 +222,6 @@ Com_samp_perchr <- function(x,y)
       filcna2 <<- unlist(strsplit(filcna, split="\\_|\\.|\\-"))[c(6)]
       if (chrs[j] != "chrX" & chrs[j] != "chrY"){
         sampcna = paste(unlist(strsplit(filcna, split="\\_|\\.|\\-"))[c(2,4,6)], collapse="_")
-        #setwd("/Projects/ENVE/temp/VarScan_CNA/NormalNormal")
         segs.all.chr <- read.table(paste(sampcna, "CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt", sep="_"),header=F, sep="\t")
         ind_chr = which(segs.all.chr[,1]==chrs[j])
         samp_chr_out =  cbind(matrix(data=sampcna, nrow = length(ind_chr), ncol=1), segs.all.chr[ind_chr,])
@@ -267,7 +260,7 @@ Nor_EVD_calc <- function()
  
   EVD_cutoff_Chr = NULL
 
-  for (chrind in 1:(length(chrs)-2)) {
+  for (chrind in 1:(length(chrs))) {
     #chrind = 1
     chr_out_n = NULL
     inds_large_segs_n = NULL
@@ -478,7 +471,6 @@ TumEVD_cal <- function()
 {
   setwd(anaTempVScanNN_EVD_Cutoff)
   tumor_norm_path = anaTempVScanTN_TumNor_SegMeans_CDSFilt
-  #norm_norm_path = "/Projects/ENVE/temp/VarScan_CNA/NormalNormal/"
   
   EVD_calc_path = anaTempVScanNN_EVD_Cutoff
   tumor_cna_path = anaTempVScanTN_TumNor_SegMeans_CDSFilt
