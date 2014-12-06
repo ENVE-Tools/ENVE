@@ -28,8 +28,13 @@ dir_create()
 chr_lengths <- chr_proc()
 ############################################################################
 
+<<<<<<< Updated upstream
 
 
+=======
+#anaTempVScanNNres <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
+setwd(anaTempVScanNNres)
+>>>>>>> Stashed changes
 
 
 
@@ -39,7 +44,11 @@ chr_lengths <- chr_proc()
 ############################################################################
 if(NormNorm)
 {   
+<<<<<<< Updated upstream
     anaTempVScanNNres <- Input_NormNorm_adjlogratio_files
+=======
+    anaTempVScanNNres <- Input_NormNorm_GC_COR_LOGRATIO_files
+>>>>>>> Stashed changes
     cn_called_files = filtCDS(anaTempVScanNNres,anaTempVScanNN_OC_CDSFilt)
     CBS_seg_samp(anaTempVScanNN_OC_CDSFilt,anaTempVScanNN_CBS_GC_crtd)
     Com_samp_perchr(anaTempVScanNN_CBS_GC_crtd,anaTempVScanNN_NorNor_SegMeans_CDSFilt)
@@ -48,7 +57,11 @@ if(NormNorm)
 ############################################################################
 if(TumNorm)
 {
+<<<<<<< Updated upstream
   anaTempVScanNNres <- Input_TumNorm_adjlogratio_files
+=======
+  anaTempVScanTNres <- Input_TumNorm_GC_COR_LOGRATIO_files 
+>>>>>>> Stashed changes
   cn_called_files = filtCDS(anaTempVScanTNres,anaTempVScanTN_OC_CDSFilt)
   CBS_seg_samp(anaTempVScanTN_OC_CDSFilt,anaTempVScanTN_CBS_GC_crtd)
   Com_samp_perchr(anaTempVScanTN_CBS_GC_crtd,anaTempVScanTN_TumNor_SegMeans_CDSFilt)

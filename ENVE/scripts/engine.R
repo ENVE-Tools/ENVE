@@ -161,8 +161,19 @@ chr_proc <- function()
 filtCDS <- function(x,y)
 {
   setwd(x)
+<<<<<<< Updated upstream
   setwd(anaTempVScanNNres)
   called.files = list.files(pattern="adj.logratio")
+=======
+  #setwd(anaTempVScanNNres)
+  called.files = list.files(pattern="GC_COR_adj_logratio")
+  #inds_gc = grep("called.gc", called.files )
+  #inds_homdel = grep("called.homdel", called.files )
+  #cn_called_files = called.files[c(-inds_gc, -inds_homdel)]
+  #inds_FiltCDS = grep("copycaller.FiltCDS", called.files )
+  #cn_called_files = called.files[c(-inds_gc, -inds_homdel, -inds_FiltCDS)]
+  #y <- anaTempVScanNN_OC_CDSFilt
+>>>>>>> Stashed changes
   cn_called_files = called.files
   
   ##### FILTER WINDOWS TO THOSE THAT FALL WITHIN CODING REGIONS ######
@@ -180,7 +191,11 @@ filtCDS <- function(x,y)
     setwd(y)
     for(i in 1:length(cn_called_files))
     {
+<<<<<<< Updated upstream
       file.rename(paste(cn_called_files[i],'adj.logratio',sep='.'), paste(cn_called_files[i],'FiltCDS',sep='.'))
+=======
+      file.rename(paste(cn_called_files[i],'GC_COR_adj_logratio',sep='.'), paste(cn_called_files[i],'FiltCDS',sep='.'))
+>>>>>>> Stashed changes
     }
   }
   return(cn_called_files)

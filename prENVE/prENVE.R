@@ -1,32 +1,18 @@
 rm(list=ls())
 prENVE <- getwd()
-prENVE <- '/Projects/prENVE/'
 setwd(prENVE)
-
-
 
 source(paste(prENVE,"Scripts","engine.R",sep='/'))
 source(paste(prENVE,"Scripts","prENVE_config.txt",sep='/'))
 source(paste(prENVE,"Scripts","prENVE_PROJ_Config.txt",sep='/'))
 
-
-####Check_download_install_check all required R/Bioconductor Packages#######
-dwnPack("DNAcopy")
-dwnPack("stringr")
-dwnPack("permute")
-dwnPack("fExtremes")
-dwnPack("IRanges")
-dwnPack("permute")
-dwnPack("combinat")
-dwnPack("gtools")
 dwnPack("plyr")
-dwnPack("compare")
-
 
 dir_create()
 samp_proc(NormBam)
 samp_proc(TumBam)
 samp_info_proc(samp_info_file)
+
 NorNor_dataRatio_calc()
 NorNorScript_gen(NorNor_samp_DataRatio)
 

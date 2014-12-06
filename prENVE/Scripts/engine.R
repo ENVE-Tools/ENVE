@@ -28,7 +28,7 @@ dir_create <- function()
   anaTemp_NorNor_copycaller_res <<- paste(anaTemp_NorNor,'copycaller_res',sep='/')
   anaTemp_NorNor_ResScripts <<- paste(anaTemp_NorNor,'scripts',sep='/')
   anaTemp_NorNor_som_res <<- paste(anaTemp_NorNor,'somatic_res',sep='/')
-  anaTemp_NorNor_adj_logratio <<-paste(anaTemp_NorNor,'adjusted_logratio',sep='/')
+  anaTemp_NorNor_GC_cor_logratio <<-paste(anaTemp_NorNor,'adjusted_logratio',sep='/')
   
   anaTemp_TumNor <<- paste(anaTemp,'TumNor',sep='/')
   anaTemp_TumNor_mpileup_res <<- paste(anaTemp_TumNor,'mpileup_res',sep='/')
@@ -36,7 +36,7 @@ dir_create <- function()
   anaTemp_TumNor_copycaller_res <<- paste(anaTemp_TumNor,'copycaller_res',sep='/')
   anaTemp_TumNor_ResScripts <<- paste(anaTemp_TumNor,'scripts',sep='/')
   anaTemp_TumNor_som_res <<- paste(anaTemp_TumNor,'somatic_res',sep='/')
-  anaTemp_TumNor_adj_logratio <<-paste(anaTemp_TumNor,'adjusted_logratio',sep='/')
+  anaTemp_TumNor_GC_cor_logratio <<-paste(anaTemp_TumNor,'adjusted_logratio',sep='/')
   
   ################## Insert more dirs######################  
   dirs <- c(ana,
@@ -49,14 +49,14 @@ dir_create <- function()
             anaTemp_NorNor_copynumer_res,
             anaTemp_NorNor_copycaller_res,
             anaTemp_NorNor_ResScripts,
-            anaTemp_NorNor_adj_logratio,
+            anaTemp_NorNor_GC_cor_logratio,
             anaTemp_TumNor,
             anaTemp_TumNor_mpileup_res,
             anaTemp_NorNor_som_res,
             anaTemp_TumNor_copynumer_res,
             anaTemp_TumNor_copycaller_res,
             anaTemp_TumNor_ResScripts,
-            anaTemp_TumNor_adj_logratio
+            anaTemp_TumNor_GC_cor_logratio
           )
   dir2 <- as.data.frame(cbind(c('ana',
                                 'anaPath',
@@ -68,14 +68,14 @@ dir_create <- function()
                                 'anaTemp_NorNor_copynumer_res',
                                 'anaTemp_NorNor_copycaller_res',
                                 'anaTemp_NorNor_ResScripts',
-                                'anaTemp_TumNor_adj_logratio',
+                                'anaTemp_TumNor_GC_cor_logratio',
                                 'anaTemp_TumNor',
                                 'anaTemp_TumNor_mpileup_res',
                                 'anaTemp_NorNor_som_res',
                                 'anaTemp_TumNor_copynumer_res',
                                 'anaTemp_TumNor_copycaller_res',
                                 'anaTemp_TumNor_ResScripts',
-                                'anaTemp_TumNor_adj_logratio'), dirs))
+                                'anaTemp_TumNor_GC_cor_logratio'), dirs))
   colnames(dir2) <- c('dirs','location')
   
   for(i in 1:length(dirs))
@@ -599,7 +599,7 @@ NorNorScript_gen <- function(x)
   }
   
   #################################################################################
-  NorNor_adj_logratio <- cbind(NorNor_Dr,
+  NorNor_GC_cor_logratio <- cbind(NorNor_Dr,
                                paste('cut -f1,2,3,7',
                                      paste(anaTemp_NorNor_copycaller_res,
                                            paste(paste('varscanCC',
@@ -617,7 +617,7 @@ NorNorScript_gen <- function(x)
                                            sep ='/'
                                      ),
                                      '>',
-                                     paste(anaTemp_TumNor_adj_logratio,
+                                     paste(anaTemp_TumNor_GC_cor_logratio,
                                            paste(paste('varscanCC',
                                                        sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                        "Normal",
@@ -627,32 +627,32 @@ NorNorScript_gen <- function(x)
                                                              NorNor_Dr[,6],
                                                              sep=''),
                                                        sep='_'),
-                                                 'adj.logratio',
+                                                 'GC_COR_adj_logratio',
                                                  sep='.'),
                                            sep='/'),
                                         sep=' ')
                                )
-  colnames(NorNor_adj_logratio) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_adj_logratio_commands')
-  write.table(NorNor_adj_logratio[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_adj_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  colnames(NorNor_GC_cor_logratio) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_GC_cor_logratio_commands')
+  write.table(NorNor_GC_cor_logratio[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_GC_cor_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
-    NorNor_adj_logratio_bash <- as.data.frame(NorNor_adj_logratio[,8],stringsAsFactors = F)
-    NorNor_adj_logratio_bash <- sapply(NorNor_adj_logratio_bash, as.character)
-    NorNor_adj_logratio_bash2 <- rbind(as.character('#!/bin/bash'), NorNor_adj_logratio_bash)
+    NorNor_GC_cor_logratio_bash <- as.data.frame(NorNor_GC_cor_logratio[,8],stringsAsFactors = F)
+    NorNor_GC_cor_logratio_bash <- sapply(NorNor_GC_cor_logratio_bash, as.character)
+    NorNor_GC_cor_logratio_bash2 <- rbind(as.character('#!/bin/bash'), NorNor_GC_cor_logratio_bash)
     #View(NorNor_copynumber_bash2)
-    write.table(NorNor_adj_logratio_bash2, file=paste(anaTemp_NorNor_ResScripts, "NorNor_adj_logratio_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+    write.table(NorNor_GC_cor_logratio_bash2, file=paste(anaTemp_NorNor_ResScripts, "NorNor_GC_cor_logratio_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   }
   
   print(paste(toString(Sys.time()),"Adjusted logratio files generating command file for Normal-Normal Pairs Created and Saved to",anaTemp_NorNor_ResScripts,sep=" "))
   if(Com_Scr)
   {
-    adj_logratio_cmnds <<- as.data.frame(NorNor_adj_logratio[,8],stringsAsFactors = F, row.names= NULL, optional = F, colnames = F)
-    adj_logratio_cmnds[,1] <<- sapply(adj_logratio_cmnds[,1], as.character)
+    GC_cor_logratio_cmnds <<- as.data.frame(NorNor_GC_cor_logratio[,8],stringsAsFactors = F, row.names= NULL, optional = F, colnames = F)
+    GC_cor_logratio_cmnds[,1] <<- sapply(GC_cor_logratio_cmnds[,1], as.character)
   }
   
   if(DEBUG)
   {
-    View(NorNor_adj_logratio)
+    View(NorNor_GC_cor_logratio)
   }
   #################################################################################
   
@@ -931,7 +931,7 @@ TumNorScript_gen <- function(x)
     View(TumNor_rm_mpileup)
   }
   
-  TumNor_adj_logratio <- cbind(TumNor_Dr,
+  TumNor_GC_cor_logratio <- cbind(TumNor_Dr,
                                paste('cut -f1,2,3,7',
                                      paste(anaTemp_TumNor_copycaller_res,
                                            paste(paste('varscanCC',
@@ -949,7 +949,7 @@ TumNorScript_gen <- function(x)
                                            sep ='/'
                                      ),
                                      '>',
-                                     paste(anaTemp_TumNor_adj_logratio,
+                                     paste(anaTemp_TumNor_GC_cor_logratio,
                                            paste(paste('varscanCC',
                                                        sub("*.cleaned.bam","",TumNor_Dr[,1]),
                                                        "Normal",
@@ -959,32 +959,32 @@ TumNorScript_gen <- function(x)
                                                              TumNor_Dr[,6],
                                                              sep=''),
                                                        sep='_'),
-                                                 'adj.logratio',
+                                                 'GC_COR_adj_logratio',
                                                  sep='.'),
                                            sep='/'),
                                      sep=' ')
   )
-colnames(TumNor_adj_logratio) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_adj_logratio_commands')
-write.table(TumNor_adj_logratio[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_adj_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+colnames(TumNor_GC_cor_logratio) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_GC_cor_logratio_commands')
+write.table(TumNor_GC_cor_logratio[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_GC_cor_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
 if(BASH)
 {
-  TumNor_adj_logratio_bash <- as.data.frame(TumNor_adj_logratio[,8],stringsAsFactors = F)
-  TumNor_adj_logratio_bash <- sapply(TumNor_adj_logratio_bash, as.character)
-  TumNor_adj_logratio_bash2 <- rbind(as.character('#!/bin/bash'), TumNor_adj_logratio_bash)
+  TumNor_GC_cor_logratio_bash <- as.data.frame(TumNor_GC_cor_logratio[,8],stringsAsFactors = F)
+  TumNor_GC_cor_logratio_bash <- sapply(TumNor_GC_cor_logratio_bash, as.character)
+  TumNor_GC_cor_logratio_bash2 <- rbind(as.character('#!/bin/bash'), TumNor_GC_cor_logratio_bash)
   #View(TumNor_copynumber_bash2)
-  write.table(TumNor_adj_logratio_bash2, file=paste(anaTemp_TumNor_ResScripts, "TumNor_adj_logratio_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  write.table(TumNor_GC_cor_logratio_bash2, file=paste(anaTemp_TumNor_ResScripts, "TumNor_GC_cor_logratio_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
 }
 
 print(paste(toString(Sys.time()),"Adjusted logratio files generating command file for Normal-Normal Pairs Created and Saved to",anaTemp_TumNor_ResScripts,sep=" "))
 if(Com_Scr)
 {
-  adj_logratio_cmnds <<- as.data.frame(TumNor_adj_logratio[,8],stringsAsFactors = F, row.names= NULL, optional = F, colnames = F)
-  adj_logratio_cmnds[,1] <<- sapply(adj_logratio_cmnds[,1], as.character)
+  GC_cor_logratio_cmnds <<- as.data.frame(TumNor_GC_cor_logratio[,8],stringsAsFactors = F, row.names= NULL, optional = F, colnames = F)
+  GC_cor_logratio_cmnds[,1] <<- sapply(GC_cor_logratio_cmnds[,1], as.character)
 }
 
 if(DEBUG)
 {
-  View(TumNor_adj_logratio)
+  View(TumNor_GC_cor_logratio)
 }
   
   
