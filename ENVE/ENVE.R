@@ -10,7 +10,7 @@ supFiles <<- paste(enveHome,"support_files",sep="/")
 
 
 source(paste(scriptsPath,"engine.R",sep='/'))
-source(paste(scriptsPath,"ENVE_CONF.txt",sep='/'))
+source(paste(scriptsPath,"Settings.txt",sep='/'))
 source(paste(scriptsPath,"ENVE_RUN_CONF.txt",sep='/'))
 ############################################################################
 
