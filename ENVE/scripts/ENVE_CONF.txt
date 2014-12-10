@@ -1,1 +1,0 @@
-IntersectBED_path <<- "/Projects/ENVE/scripts/bedtools2/bin/intersectBed"
