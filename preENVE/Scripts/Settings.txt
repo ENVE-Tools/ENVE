@@ -8,4 +8,4 @@ Bash_Home <- '"#!/bin/bash"'
 DEBUG=F
 BASH= F
 HPC = F
-Com_Scr = F
+Com_Scr = T

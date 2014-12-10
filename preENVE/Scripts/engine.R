@@ -16,7 +16,7 @@ dwnPack <- function(x)
 dir_create <- function()
 {
   print(paste(toString(Sys.time()),"Creating Directories for Analysis"))
-  ana <<- paste(prENVE,"Analysis",sep='/')
+  ana <<- paste(preENVE,"Analysis",sep='/')
   #####Analysis files#########
   
   anaPath <<- paste(ana,(paste("Analysis",toString(strftime(Sys.time(),format="%H_%M_%d_%m_%Y")),sep='_')),sep ="/")
@@ -326,7 +326,7 @@ NorNorScript_gen <- function(x)
                                 paste(NormBam,NorNor_Dr[,2],sep='/'),
                                 '>',
                                 paste(anaTemp_NorNor_mpileup_res,
-                                      paste(paste('mpileup_res',
+                                      paste(paste(
                                                   sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                   "Normal",
                                                   sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -348,7 +348,7 @@ NorNorScript_gen <- function(x)
     NorNor_mpileup_bash <- sapply(NorNor_mpileup_bash, as.character)
     NorNor_mpileup_bash2 <- rbind(as.character('#!/bin/bash'), NorNor_mpileup_bash)
     #View(NorNor_mpileup_bash2)
-    write.table(NorNor_mpileup_bash2, file=paste(anaTemp_NorNor_ResScripts, "NorNor_mpileup_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+    #write.table(NorNor_mpileup_bash2, file=paste(anaTemp_NorNor_ResScripts, "NorNor_mpileup_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   }
   if(Com_Scr)
   {
@@ -367,7 +367,7 @@ NorNorScript_gen <- function(x)
                                    VarScan,
                                    'copynumber',
                                    paste(anaTemp_NorNor_mpileup_res, 
-                                         paste(paste('mpileup_res',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -380,7 +380,7 @@ NorNorScript_gen <- function(x)
                                                sep='.'),
                                          sep='/'),
                                    paste(anaTemp_NorNor_copynumer_res,
-                                         paste(paste('varscanCN',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -400,7 +400,7 @@ NorNorScript_gen <- function(x)
   )
   
   colnames(NorNor_copynumber) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_copynumber_commands')
-  write.table(NorNor_copynumber[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_copynumber_commands.txt", sep="/"), row.names=F, col.names=T, quote=F, sep="\t") 
+  #write.table(NorNor_copynumber[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_copynumber_commands.txt", sep="/"), row.names=F, col.names=T, quote=F, sep="\t") 
   if(BASH)
   {
     NorNor_copynumber_bash <- as.data.frame(NorNor_copynumber[,8],stringsAsFactors = F)
@@ -418,62 +418,66 @@ NorNorScript_gen <- function(x)
   {
     View(NorNor_copynumber)
   }
-  
-  NorNor_somatic <- cbind(NorNor_Dr,
-                          paste(paste(JAVA_HOME,'java',sep='/'),
-                                '-jar',
-                                VarScan,
-                                'somatic',
-                                paste(anaTemp_NorNor_mpileup_res, 
-                                      paste(paste('mpileup_res',
-                                                  sub("*.cleaned.bam","",NorNor_Dr[,1]),
-                                                  "Normal",
-                                                  sub("*.cleaned.bam","",NorNor_Dr[,2]),
-                                                  "Normal",
-                                                  paste(NorNor_Dr[,4],
-                                                        NorNor_Dr[,6],
-                                                        sep=''),
-                                                  sep='_'),
-                                            'mpileup',
-                                            sep='.'),
-                                      sep='/'),
-                                paste(anaTemp_NorNor_som_res,
-                                      paste(paste('varscanSOM',
-                                                  sub("*.cleaned.bam","",NorNor_Dr[,1]),
-                                                  "Normal",
-                                                  sub("*.cleaned.bam","",NorNor_Dr[,2]),
-                                                  "Normal",
-                                                  paste(NorNor_Dr[,4],
-                                                        NorNor_Dr[,6],
-                                                        sep=''),
-                                                  sep='_'),
-                                            'out',
-                                            sep='.'),
-                                      sep='/'),
-                                '--mpileup',
-                                '1',
-                                sep=' ')
-  )
-  colnames(NorNor_copynumber) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_somatic_commands')
-  write.table(NorNor_somatic[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_somatic_commands.txt", sep="/"), row.names=F, col.names=T, quote=F, sep="\t")
-  if(BASH)
-  {
-    NorNor_somatic_bash <- as.data.frame(NorNor_somatic[,8],stringsAsFactors = F)
-    NorNor_somatic_bash <- sapply(NorNor_somatic_bash, as.character)
-    NorNor_somatic_bash2 <- rbind(as.character('#!/bin/bash'), NorNor_somatic_bash)
-    #View(NorNor_copynumber_bash2)
-    write.table(NorNor_somatic_bash2, file=paste(anaTemp_NorNor_ResScripts, "NorNor_somatic_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
-  }
-  
   if(F)
   {
-    somatic_cmnds <<- as.data.frame(NorNor_somatic[,8],stringsAsFactors = F, row.names= NULL, optional = F, colnames = F)
-    somatic_cmnds[,1] <<- sapply(somatic_cmnds[,1], as.character)
+    NorNor_somatic <- cbind(NorNor_Dr,
+                            paste(paste(JAVA_HOME,'java',sep='/'),
+                                  '-jar',
+                                  VarScan,
+                                  'somatic',
+                                  paste(anaTemp_NorNor_mpileup_res, 
+                                        paste(paste(
+                                          sub("*.cleaned.bam","",NorNor_Dr[,1]),
+                                          "Normal",
+                                          sub("*.cleaned.bam","",NorNor_Dr[,2]),
+                                          "Normal",
+                                          paste(NorNor_Dr[,4],
+                                                NorNor_Dr[,6],
+                                                sep=''),
+                                          sep='_'),
+                                          'mpileup',
+                                          sep='.'),
+                                        sep='/'),
+                                  paste(anaTemp_NorNor_som_res,
+                                        paste(paste(
+                                          sub("*.cleaned.bam","",NorNor_Dr[,1]),
+                                          "Normal",
+                                          sub("*.cleaned.bam","",NorNor_Dr[,2]),
+                                          "Normal",
+                                          paste(NorNor_Dr[,4],
+                                                NorNor_Dr[,6],
+                                                sep=''),
+                                          sep='_'),
+                                          'out',
+                                          sep='.'),
+                                        sep='/'),
+                                  '--mpileup',
+                                  '1',
+                                  sep=' ')
+    )
+    colnames(NorNor_copynumber) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_somatic_commands')
+    #write.table(NorNor_somatic[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_somatic_commands.txt", sep="/"), row.names=F, col.names=T, quote=F, sep="\t")
+    if(BASH)
+    {
+      NorNor_somatic_bash <- as.data.frame(NorNor_somatic[,8],stringsAsFactors = F)
+      NorNor_somatic_bash <- sapply(NorNor_somatic_bash, as.character)
+      NorNor_somatic_bash2 <- rbind(as.character('#!/bin/bash'), NorNor_somatic_bash)
+      #View(NorNor_copynumber_bash2)
+      write.table(NorNor_somatic_bash2, file=paste(anaTemp_NorNor_ResScripts, "NorNor_somatic_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+    }
+    
+    if(F)
+    {
+      somatic_cmnds <<- as.data.frame(NorNor_somatic[,8],stringsAsFactors = F, row.names= NULL, optional = F, colnames = F)
+      somatic_cmnds[,1] <<- sapply(somatic_cmnds[,1], as.character)
+    }
+    if(DEBUG)
+    {
+      View(NorNor_somatic)
+    }
+    
   }
-  if(DEBUG)
-  {
-    View(NorNor_somatic)
-  }
+  
   
   
   print(paste(toString(Sys.time()),"Varscan_copynumber generating command file for Normal-Normal Pairs Created and Saved to",anaTemp_NorNor_ResScripts,sep=" "))
@@ -488,7 +492,7 @@ NorNorScript_gen <- function(x)
                                    VarScan,
                                    'copyCaller',
                                    paste(anaTemp_NorNor_copynumer_res,
-                                         paste(paste('varscanCN',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -503,7 +507,7 @@ NorNorScript_gen <- function(x)
                                          sep='/'),
                                    '--output-file',
                                    paste(anaTemp_NorNor_copycaller_res,
-                                         paste(paste('varscanCC',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -518,7 +522,7 @@ NorNorScript_gen <- function(x)
                                          sep='/'),
                                    '--output-homdel-file',
                                    paste(anaTemp_NorNor_copycaller_res,
-                                         paste(paste('varscanCC',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -535,7 +539,7 @@ NorNorScript_gen <- function(x)
                                    sep=' ')
   )
   colnames(NorNor_copycaller) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_CopyCaller_commands')
-  write.table(NorNor_copycaller[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_copycaller_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(NorNor_copycaller[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_copycaller_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     NorNor_copycaller_bash <- as.data.frame(NorNor_copycaller[,8],stringsAsFactors = F)
@@ -560,7 +564,7 @@ NorNorScript_gen <- function(x)
   NorNor_rm_mpileup <- cbind(NorNor_Dr,
                              paste('rm',
                                    paste(anaTemp_NorNor_mpileup_res,
-                                         paste(paste('mpileup_res',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -575,7 +579,7 @@ NorNorScript_gen <- function(x)
                                    sep=' ')
   )
   colnames(NorNor_rm_mpileup) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','mpileup_rm_command') 
-  write.table(NorNor_rm_mpileup[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_rm_mpileup_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(NorNor_rm_mpileup[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_rm_mpileup_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     NorNor_rm_mpileup_bash <- as.data.frame(NorNor_rm_mpileup[,8],stringsAsFactors = F)
@@ -602,7 +606,7 @@ NorNorScript_gen <- function(x)
   NorNor_GC_cor_logratio <- cbind(NorNor_Dr,
                                paste('cut -f1,2,3,7',
                                      paste(anaTemp_NorNor_copycaller_res,
-                                           paste(paste('varscanCC',
+                                           paste(paste(
                                                        sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                        "Normal",
                                                        sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -618,7 +622,7 @@ NorNorScript_gen <- function(x)
                                      ),
                                      '>',
                                      paste(anaTemp_TumNor_GC_cor_logratio,
-                                           paste(paste('varscanCC',
+                                           paste(paste(
                                                        sub("*.cleaned.bam","",NorNor_Dr[,1]),
                                                        "Normal",
                                                        sub("*.cleaned.bam","",NorNor_Dr[,2]),
@@ -633,7 +637,7 @@ NorNorScript_gen <- function(x)
                                         sep=' ')
                                )
   colnames(NorNor_GC_cor_logratio) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_GC_cor_logratio_commands')
-  write.table(NorNor_GC_cor_logratio[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_GC_cor_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(NorNor_GC_cor_logratio[,8], file=paste(anaTemp_NorNor_ResScripts, "NorNor_GC_cor_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     NorNor_GC_cor_logratio_bash <- as.data.frame(NorNor_GC_cor_logratio[,8],stringsAsFactors = F)
@@ -655,7 +659,95 @@ NorNorScript_gen <- function(x)
     View(NorNor_GC_cor_logratio)
   }
   #################################################################################
-  
+  if(Com_Scr)
+  {
+    script <- NULL
+    cores = 1
+    com_per_scripts <- length(mpileup_cmnds[,1])
+    for(i in seq(from=1, to=com_per_scripts, by=cores))
+    {
+      print(paste("i =",i,sep=''))
+      print("\n")
+      #resi <- rbind(resi,i)
+      for (j in i:(i+cores-1))
+      {
+        if(j < (i+cores-1))
+        {
+          script <- rbind(script,paste(mpileup_cmnds[j,1],"&",sep=' '))
+        }
+        else if(j == (i+cores-1))
+        {
+          script <- rbind(script,mpileup_cmnds[j,1])
+          script <- rbind(script,"wait")
+        }
+        
+        print(paste("j =",j,sep=''))
+        #res_mpi <- rbind(res_mpi,paste(j,script[j,1],sep="="))
+      }
+      for (j in i:(i+cores-1))
+      {
+        if(j < (i+cores-1))
+        {
+          script <- rbind(script,paste(copynumber_cmnds[j,1],"&",sep=' '))
+        }
+        else if(j == (i+cores-1))
+        {
+          script <- rbind(script,copynumber_cmnds[j,1])
+          script <- rbind(script,"wait")
+        }
+        print(paste("j =",j,sep=''))
+        #res_cn <- rbind(res_cn,j)
+      }
+      for (j in i:(i+cores-1))
+      {
+        if(j < (i+cores-1))
+        {
+          script <- rbind(script,paste(copycaller_cmnds[j,1],"&",sep=' '))
+        }
+        else if(j == (i+cores-1))
+        {
+          script <- rbind(script,copycaller_cmnds[j,1])
+          script <- rbind(script,"wait")
+        }
+        print(paste("j =",j,sep=''))
+        #res_cc <- rbind(res_cc,j)
+      }
+      for (j in i:(i+cores-1))
+      {
+        if(j < (i+cores-1))
+        {
+          script <- rbind(script,paste(GC_cor_logratio_cmnds[j,1],"&",sep=' '))
+        }
+        else if(j == (i+cores-1))
+        {
+          script <- rbind(script,GC_cor_logratio_cmnds[j,1])
+          script <- rbind(script,"wait")
+        }
+        print(paste("j =",j,sep=''))
+        #res_som <- rbind(res_som,j)
+      }
+      for (j in i:(i+cores-1))
+      {
+        if(j < (i+cores-1))
+        {
+          script <- rbind(script,paste(rem_mpileup_cmnds[j,1],"&",sep=' '))
+        }
+        else if(j == (i+cores-1))
+        {
+          script <- rbind(script,rem_mpileup_cmnds[j,1])
+          script <- rbind(script,"wait")
+        }
+        print(paste("j =",j,sep=''))
+        #res_rem <- rbind(res_rem,j)
+      }
+      script <- rbind(script,"######################")
+      if(j < length(mpileup_cmnds[,1]))
+      {
+        i = i+cores
+      }else{break}
+    }
+    write.table(script, file=paste(anaTemp_NorNor_ResScripts, "cmbined_script.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  }
   
 }
 ##########################################################################################################################################################################################
@@ -689,7 +781,7 @@ TumNorScript_gen <- function(x)
                                 paste(TumBam,TumNor_Dr[,2],sep='/'),
                                 '>',
                                 paste(anaTemp_TumNor_mpileup_res,
-                                      paste(paste('mpileup_res',
+                                      paste(paste(
                                                   sub("*.bam","",TumNor_Dr[,1]),
                                                   "Normal",
                                                   sub("*.bam","",TumNor_Dr[,2]),
@@ -704,7 +796,7 @@ TumNorScript_gen <- function(x)
                                 sep=' ')
   )
   colnames(TumNor_mpileup) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','mpileup_commands') 
-  write.table(TumNor_mpileup[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_mpileup_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(TumNor_mpileup[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_mpileup_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     TumNor_mpileup_bash <- as.data.frame(TumNor_mpileup[,8],stringsAsFactors = F)
@@ -725,7 +817,7 @@ TumNorScript_gen <- function(x)
                                    VarScan,
                                    'copynumber',
                                    paste(anaTemp_TumNor_mpileup_res, 
-                                         paste(paste('mpileup_res',
+                                         paste(paste(
                                                      sub("*.bam","",TumNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.bam","",TumNor_Dr[,2]),
@@ -738,7 +830,7 @@ TumNorScript_gen <- function(x)
                                                sep='.'),
                                          sep='/'),
                                    paste(anaTemp_TumNor_copynumer_res,
-                                         paste(paste('varscanCN',
+                                         paste(paste(
                                                      sub("*.bam","",TumNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.bam","",TumNor_Dr[,2]),
@@ -758,7 +850,7 @@ TumNorScript_gen <- function(x)
   )
   
   colnames(TumNor_copynumber) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_copynumber_command')
-  write.table(TumNor_copynumber[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_copynumber_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(TumNor_copynumber[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_copynumber_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     TumNor_copynumber_bash <- as.data.frame(TumNor_copynumber[,8],stringsAsFactors = F)
@@ -767,58 +859,59 @@ TumNorScript_gen <- function(x)
     #View(TumNor_mpileup_bash2)
     write.table(TumNor_copynumber_bash2, file=paste(anaTemp_TumNor_ResScripts, "TumNor_copynumber_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   }
-  
-  TumNor_somatic <- cbind(TumNor_Dr,
-                          paste(paste(JAVA_HOME,'java',sep='/'),
-                                '-jar',
-                                VarScan,
-                                'somatic',
-                                paste(anaTemp_TumNor_mpileup_res, 
-                                      paste(paste('mpileup_res',
-                                                  sub("*.bam","",TumNor_Dr[,1]),
-                                                  "Normal",
-                                                  sub("*.bam","",TumNor_Dr[,2]),
-                                                  "Tumor",
-                                                  paste(TumNor_Dr[,4],
-                                                        TumNor_Dr[,6],
-                                                        sep=''),
-                                                  sep='_'),
-                                            'mpileup',
-                                            sep='.'),
-                                      sep='/'),
-                                paste(anaTemp_TumNor_som_res,
-                                      paste(paste('varscanSOM',
-                                                  sub("*.bam","",TumNor_Dr[,1]),
-                                                  "Normal",
-                                                  sub("*.bam","",TumNor_Dr[,2]),
-                                                  "Tumor",
-                                                  paste(TumNor_Dr[,4],
-                                                        TumNor_Dr[,6],
-                                                        sep=''),
-                                                  sep='_'),
-                                            'out',
-                                            sep='.'),
-                                      sep='/'),
-                                '--mpileup',
-                                '1',
-                                sep=' ')
-  )
-  colnames(TumNor_copynumber) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_somatic_commands')
-  write.table(TumNor_somatic[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_somatic_commands.txt", sep="/"), row.names=F, col.names=T, quote=F, sep="\t")
-  if(BASH)
+  if(F)
   {
-    TumNor_somatic_bash <- as.data.frame(TumNor_somatic[,8],stringsAsFactors = F)
-    TumNor_somatic_bash <- sapply(TumNor_somatic_bash, as.character)
-    TumNor_somatic_bash2 <- rbind(as.character('#!/bin/bash'), TumNor_somatic_bash)
-    #View(TumNor_copynumber_bash2)
-    write.table(TumNor_somatic_bash2, file=paste(anaTemp_TumNor_ResScripts, "TumNor_somatic_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
-  }
-  if(DEBUG)
-  {
-    View(TumNor_somatic)
-  }
+      TumNor_somatic <- cbind(TumNor_Dr,
+                            paste(paste(JAVA_HOME,'java',sep='/'),
+                                  '-jar',
+                                  VarScan,
+                                  'somatic',
+                                  paste(anaTemp_TumNor_mpileup_res, 
+                                        paste(paste('mpileup_res',
+                                                    sub("*.bam","",TumNor_Dr[,1]),
+                                                    "Normal",
+                                                    sub("*.bam","",TumNor_Dr[,2]),
+                                                    "Tumor",
+                                                    paste(TumNor_Dr[,4],
+                                                          TumNor_Dr[,6],
+                                                          sep=''),
+                                                    sep='_'),
+                                              'mpileup',
+                                              sep='.'),
+                                        sep='/'),
+                                  paste(anaTemp_TumNor_som_res,
+                                        paste(paste('varscanSOM',
+                                                    sub("*.bam","",TumNor_Dr[,1]),
+                                                    "Normal",
+                                                    sub("*.bam","",TumNor_Dr[,2]),
+                                                    "Tumor",
+                                                    paste(TumNor_Dr[,4],
+                                                          TumNor_Dr[,6],
+                                                          sep=''),
+                                                    sep='_'),
+                                              'out',
+                                              sep='.'),
+                                        sep='/'),
+                                  '--mpileup',
+                                  '1',
+                                  sep=' ')
+    )
+    colnames(TumNor_copynumber) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_somatic_commands')
+    #write.table(TumNor_somatic[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_somatic_commands.txt", sep="/"), row.names=F, col.names=T, quote=F, sep="\t")
+    if(BASH)
+    {
+      TumNor_somatic_bash <- as.data.frame(TumNor_somatic[,8],stringsAsFactors = F)
+      TumNor_somatic_bash <- sapply(TumNor_somatic_bash, as.character)
+      TumNor_somatic_bash2 <- rbind(as.character('#!/bin/bash'), TumNor_somatic_bash)
+      #View(TumNor_copynumber_bash2)
+      write.table(TumNor_somatic_bash2, file=paste(anaTemp_TumNor_ResScripts, "TumNor_somatic_commands.sh", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+    }
+    if(DEBUG)
+    {
+      View(TumNor_somatic)
+    }
   
-  
+  }
   
   
   print(paste(toString(Sys.time()),"Varscan_CopyNumber generating command file for Normal-Normal Pairs Created and Saved to",anaTemp_TumNor_ResScripts,sep=" "))
@@ -833,7 +926,7 @@ TumNorScript_gen <- function(x)
                                    VarScan,
                                    'copyCaller',
                                    paste(anaTemp_TumNor_copynumer_res,
-                                         paste(paste('varscanCN',
+                                         paste(paste(
                                                      sub("*.bam","",TumNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.bam","",TumNor_Dr[,2]),
@@ -848,7 +941,7 @@ TumNorScript_gen <- function(x)
                                          sep='/'),
                                    '--output-file',
                                    paste(anaTemp_TumNor_copycaller_res,
-                                         paste(paste('varscanCC',
+                                         paste(paste(
                                                      sub("*.bam","",TumNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.bam","",TumNor_Dr[,2]),
@@ -863,7 +956,7 @@ TumNorScript_gen <- function(x)
                                          sep='/'),
                                    '--output-homdel-file',
                                    paste(anaTemp_TumNor_copycaller_res,
-                                         paste(paste('varscanCC',
+                                         paste(paste(
                                                      sub("*.bam","",TumNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.bam","",TumNor_Dr[,2]),
@@ -880,7 +973,7 @@ TumNorScript_gen <- function(x)
                                    sep=' ')
   )
   colnames(TumNor_copycaller) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_copycaller_command')
-  write.table(TumNor_copycaller[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_copycaller_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(TumNor_copycaller[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_copycaller_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     TumNor_copycaller_bash <- as.data.frame(TumNor_copycaller[,8],stringsAsFactors = F)
@@ -900,7 +993,7 @@ TumNorScript_gen <- function(x)
   TumNor_rm_mpileup <- cbind(TumNor_Dr,
                              paste('rm',
                                    paste(anaTemp_TumNor_mpileup_res,
-                                         paste(paste('mpileup_res',
+                                         paste(paste(
                                                      sub("*.cleaned.bam","",TumNor_Dr[,1]),
                                                      "Normal",
                                                      sub("*.cleaned.bam","",TumNor_Dr[,2]),
@@ -915,7 +1008,7 @@ TumNorScript_gen <- function(x)
                                    sep=' ')
   )
   colnames(TumNor_rm_mpileup) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','mpileup_rm_command') 
-  write.table(TumNor_mpileup[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_rm_mpileup_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+  #write.table(TumNor_mpileup[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_rm_mpileup_commands.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
   if(BASH)
   {
     TumNor_rm_mpileup_bash <- as.data.frame(TumNor_rm_mpileup[,8],stringsAsFactors = F)
@@ -934,7 +1027,7 @@ TumNorScript_gen <- function(x)
   TumNor_GC_cor_logratio <- cbind(TumNor_Dr,
                                paste('cut -f1,2,3,7',
                                      paste(anaTemp_TumNor_copycaller_res,
-                                           paste(paste('varscanCC',
+                                           paste(paste(
                                                        sub("*.cleaned.bam","",TumNor_Dr[,1]),
                                                        "Normal",
                                                        sub("*.cleaned.bam","",TumNor_Dr[,2]),
@@ -950,7 +1043,7 @@ TumNorScript_gen <- function(x)
                                      ),
                                      '>',
                                      paste(anaTemp_TumNor_GC_cor_logratio,
-                                           paste(paste('varscanCC',
+                                           paste(paste(
                                                        sub("*.cleaned.bam","",TumNor_Dr[,1]),
                                                        "Normal",
                                                        sub("*.cleaned.bam","",TumNor_Dr[,2]),
@@ -965,7 +1058,7 @@ TumNorScript_gen <- function(x)
                                      sep=' ')
   )
 colnames(TumNor_GC_cor_logratio) <- c('Sample1','Sample2','UqBsAli_sample1','Gender1','UqBsAli_sample2','Gender2','Data_Ratio','Varscan_GC_cor_logratio_commands')
-write.table(TumNor_GC_cor_logratio[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_GC_cor_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+#write.table(TumNor_GC_cor_logratio[,8], file=paste(anaTemp_TumNor_ResScripts, "TumNor_GC_cor_logratio.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
 if(BASH)
 {
   TumNor_GC_cor_logratio_bash <- as.data.frame(TumNor_GC_cor_logratio[,8],stringsAsFactors = F)
@@ -986,7 +1079,96 @@ if(DEBUG)
 {
   View(TumNor_GC_cor_logratio)
 }
-  
+
+if(Com_Scr)
+{
+  script <- NULL
+  cores = 1
+  com_per_scripts <- length(mpileup_cmnds[,1])
+  for(i in seq(from=1, to=com_per_scripts, by=cores))
+  {
+    print(paste("i =",i,sep=''))
+    print("\n")
+    #resi <- rbind(resi,i)
+    for (j in i:(i+cores-1))
+    {
+      if(j < (i+cores-1))
+      {
+        script <- rbind(script,paste(mpileup_cmnds[j,1],"&",sep=' '))
+      }
+      else if(j == (i+cores-1))
+      {
+        script <- rbind(script,mpileup_cmnds[j,1])
+        script <- rbind(script,"wait")
+      }
+      
+      print(paste("j =",j,sep=''))
+      #res_mpi <- rbind(res_mpi,paste(j,script[j,1],sep="="))
+    }
+    for (j in i:(i+cores-1))
+    {
+      if(j < (i+cores-1))
+      {
+        script <- rbind(script,paste(copynumber_cmnds[j,1],"&",sep=' '))
+      }
+      else if(j == (i+cores-1))
+      {
+        script <- rbind(script,copynumber_cmnds[j,1])
+        script <- rbind(script,"wait")
+      }
+      print(paste("j =",j,sep=''))
+      #res_cn <- rbind(res_cn,j)
+    }
+    for (j in i:(i+cores-1))
+    {
+      if(j < (i+cores-1))
+      {
+        script <- rbind(script,paste(copycaller_cmnds[j,1],"&",sep=' '))
+      }
+      else if(j == (i+cores-1))
+      {
+        script <- rbind(script,copycaller_cmnds[j,1])
+        script <- rbind(script,"wait")
+      }
+      print(paste("j =",j,sep=''))
+      #res_cc <- rbind(res_cc,j)
+    }
+    for (j in i:(i+cores-1))
+    {
+      if(j < (i+cores-1))
+      {
+        script <- rbind(script,paste(GC_cor_logratio_cmnds[j,1],"&",sep=' '))
+      }
+      else if(j == (i+cores-1))
+      {
+        script <- rbind(script,GC_cor_logratio_cmnds[j,1])
+        script <- rbind(script,"wait")
+      }
+      print(paste("j =",j,sep=''))
+      #res_som <- rbind(res_som,j)
+    }
+    for (j in i:(i+cores-1))
+    {
+      if(j < (i+cores-1))
+      {
+        script <- rbind(script,paste(rem_mpileup_cmnds[j,1],"&",sep=' '))
+      }
+      else if(j == (i+cores-1))
+      {
+        script <- rbind(script,rem_mpileup_cmnds[j,1])
+        script <- rbind(script,"wait")
+      }
+      print(paste("j =",j,sep=''))
+      #res_rem <- rbind(res_rem,j)
+    }
+    script <- rbind(script,"######################")
+    if(j < length(mpileup_cmnds[,1]))
+    {
+      i = i+cores
+    }else{break}
+  }
+  write.table(script, file=paste(anaTemp_NorNor_ResScripts, "cmbined_script.txt", sep="/"), row.names=F, col.names=F, quote=F, sep="\t")
+}
   
 }
 
