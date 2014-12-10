@@ -1,11 +1,27 @@
+# Samtools required to create mpileups. 
 samTools <-'/mnt/Data4/local/exome_processing/samtools-0.1.14'
+
+# The scripts uses copycaller and copynumber module of the Varscan toolbox. 
 VarScan <- '/mnt/Data4/local/exome_processing/bin/VarScan.v2.3.6.jar'
+
+# Varscan Needs Java environment to Run
 JAVA_HOME <- '/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin'
+
+#
 hg19_karyo <- '/mnt/Data4/local/exome_processing/lib/exome/gatk/hg19_karyo.fa'
+
+#
 Bash_Home <- '"#!/bin/bash"'
 
-
+<<<<<<< HEAD:preENVE/Scripts/Settings.txt
 DEBUG=F
 BASH= F
 HPC = F
 Com_Scr = T
+=======
+# Set the following parameters fot the following operations
+DEBUG=F     # If want to see the resulting script commands
+BASH= F     # If willing to create Bash scripts 
+HPC = F     # Planned to design for next version
+Com_Scr = F # Combing all scripts 
+>>>>>>> FETCH_HEAD:prENVE/Scripts/prENVE_config.txt

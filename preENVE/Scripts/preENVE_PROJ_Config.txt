@@ -1,7 +1,15 @@
 ######Three_inputs_need_by_the_script
+# Directory where the BAM files for Normal Samples are saved
 NormBam <- '/mnt/Data4/local/exome_processing/paired_data/FCC_bams/NormNorm'
+<<<<<<< HEAD:preENVE/Scripts/preENVE_PROJ_Config.txt
 TumBam <- '/Projects/preENVE/TumBam'
+=======
+# Directory for where BAM files for Tumor Samples are saved
+TumBam <- '/Projects/prENVE/TumBam'
+# Pointer to the Samplesheet
+>>>>>>> FETCH_HEAD:prENVE/Scripts/prENVE_PROJ_Config.txt
 samp_info_file <- '/Projects/prENVE/test_samp.txt'
+# Number of Norm Samples to include for EVD calculation
 Number_of_samp = 10
 
 
