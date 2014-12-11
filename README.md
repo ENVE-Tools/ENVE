@@ -1,7 +1,7 @@
-ENVE Version 1.0
+##ENVE Version 1.0
 ====
 
-====Introduction====
+###Introduction
 
 ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way. The ENVE methodology, in general, consists of two major modules, which include capturing and modeling the inherent noise (sample- and technical-associated variability) in whole-exome sequencing data using non-tumor diploid normal samples, followed by utilizing the learned model parameters to reliably detect somatic copy-number alterations in tumors.
 
