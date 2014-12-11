@@ -1,5 +1,6 @@
 ##ENVE Version 1.0
 ###Introduction
+==============================================================================================================================
 
 ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way. The ENVE methodology, in general, consists of two major modules, which include capturing and modeling the inherent noise (sample- and technical-associated variability) in whole-exome sequencing data using non-tumor diploid normal samples, followed by utilizing the learned model parameters to reliably detect somatic copy-number alterations in tumors.
 
@@ -15,7 +16,7 @@ In this guide we provide easy to follow instructions for installing the ENVE mod
 ==============================================================================================================================
 
 ##System Requirements
-
+==============================================================================================================================
 ###Platforms and System Requirements
 
 ###Introduction 
@@ -69,7 +70,7 @@ For more information : http://bedtools.readthedocs.org/en/latest/content/install
 ==============================================================================================================================
 
 ##Installation And Running Tool
-
+==============================================================================================================================
 * Download the ENVE-1.0 repository
 
 ### preENVE
@@ -95,20 +96,15 @@ $ R CMD BATCH ENVE.R
 The results file be stored in analysis folder with the analysis name with timestamp. all the required and intermediate files can be found in temp folder.
 
 ==============================================================================================================================
-
-
 ###Understanding the Results
-
+==============================================================================================================================
 ###Important Files
-
-### Important Files 
 
 ### preENVE
 1. combined_Script : It is the set of bash commands needed to get the GC corrected log ratio for a particular pair of samples, this script includes command to create mpileup using samtools and copynumber information using VarScan.
 
 If not using preENVE module to create GC corrected log ratio, one need to provide a file which includes chromosome Information with start position and end with the log ratio for the pairs.
 
-================================================================
 
 ###ENVE
   1. Tiff Files
@@ -122,3 +118,4 @@ If not using preENVE module to create GC corrected log ratio, one need to provid
       * location : analysis/Results/
       * This file contains the final ENVE p values of all the segments after removing the noise by the use of Normal Diploid comparisons.
 
+==============================================================================================================================
