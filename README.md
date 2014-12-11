@@ -1,6 +1,4 @@
 ##ENVE Version 1.0
-====
-
 ###Introduction
 
 ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way. The ENVE methodology, in general, consists of two major modules, which include capturing and modeling the inherent noise (sample- and technical-associated variability) in whole-exome sequencing data using non-tumor diploid normal samples, followed by utilizing the learned model parameters to reliably detect somatic copy-number alterations in tumors.
@@ -16,15 +14,15 @@ In this guide we provide easy to follow instructions for installing the ENVE mod
 
 ==============================================================================================================================
 
-====System Requirements====
+##System Requirements
 
-==Platforms and System Requirements==
+###Platforms and System Requirements
 
-## Introduction 
+###Introduction 
 
 This page describes the various system and software required to run the ENVE 1.0
 
-## Platforms and System Requirements
+###Platforms and System Requirements
 
 The module performance was tested on two platforms 
   * 2.8 GHz Intel Core i7 processor with 8 GB of RAM iMac machine
@@ -34,11 +32,11 @@ The performance of the script depends on the available memory and number of core
 
 Hard Disk Space : The module needs around 30 MB of Hard Disk space
 
-## Software Architecture
+###Software Architecture
 
 The script was developed on the R platform with version 3.1, and it is assumed that the user also use the same for running the script. 
 
-## Software Requirements
+###Software Requirements
 
  * [**R**](http://www.r-project.org/) : Free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms.
 <br> preferred Version : >= 3.1 
@@ -70,11 +68,11 @@ For more information : http://bedtools.readthedocs.org/en/latest/content/install
 
 ==============================================================================================================================
 
-====Installation And Running Tool====
+##Installation And Running Tool
 
 * Download the ENVE-1.0 repository
 
-## preENVE
+### preENVE
 * In the subdirectory scripts one need to edit two files 
       * Settings.txt :  This text file have pointers to the required external software and environment packages. 
       * preENVE_PROJ_Config : This text file have pointers for input folders. and sample sheet. 
@@ -84,13 +82,10 @@ For more information : http://bedtools.readthedocs.org/en/latest/content/install
 $ cd _directory/to/preENVE_ <br>
 $ R CMD BATCH preENVE.R
 
-## ENVE
+### ENVE
 * In subdirectory scripts one need to edit two files
      * Settings.txt : this file contains a field which points to the intersectBed tool present in the bedtools/bin/intersectBed, and needed to be updated.
      * ENVE_RUN_CONF.TXT : This file consist of information required for running the batch. Paths to the Normal Normal Paired data (*.GC_CORR_ADJ_LOGRATIO) files needed to be provided, The text file also asks user if one is running Whole exome data and If wants to run both Normal-Normal ENVE module and Tumor-Normal module together.  
-
-
-
 
 * To Run the ENVE Module 
 
@@ -102,11 +97,11 @@ The results file be stored in analysis folder with the analysis name with timest
 ==============================================================================================================================
 
 
-====Understanding the Results====
+###Understanding the Results
 
-==Important Files==
+###Important Files
 
-## Important Files 
+### Important Files 
 
 ### preENVE
 1. combined_Script : It is the set of bash commands needed to get the GC corrected log ratio for a particular pair of samples, this script includes command to create mpileup using samtools and copynumber information using VarScan.
