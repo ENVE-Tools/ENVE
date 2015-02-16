@@ -105,6 +105,8 @@ The results file be stored in analysis folder with the analysis name with timest
 
 If not using preENVE module to create GC corrected log ratio, one need to provide a file which includes chromosome Information with start position and end with the log ratio for the pairs.
 
+2. NorNor_CalledFiles.txt , TumNor_CalledFiles.txt : these file consist of the sample ids and gender information. which is required by ENVE module to understand the pair names and gender information. 
+
 
 ###ENVE
   1. Tiff Files
