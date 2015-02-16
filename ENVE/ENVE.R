@@ -1,16 +1,23 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
 ############################################################################
-#enveHome <<- "/projects/ENVE"
-enveHome <<- getwd()
+enveHome <<- "/projects/ENVE"
+#enveHome <<- getwd()
 scriptsPath <<-paste(enveHome,"scripts",sep= "/")
 supFiles <<- paste(enveHome,"support_files",sep="/")
+############################################################################
 
 
+<<<<<<< Updated upstream
 
 
 source(paste(scriptsPath,"engine.R",sep='/'))
 source(paste(scriptsPath,"Settings.txt",sep='/'))
+=======
+###########################################################################
+source(paste(scriptsPath,"engine7_forupload.R",sep='/'))
+source(paste(scriptsPath,"ENVE_CONF.txt",sep='/'))
+>>>>>>> Stashed changes
 source(paste(scriptsPath,"ENVE_RUN_CONF.txt",sep='/'))
 ############################################################################
 
@@ -21,20 +28,25 @@ dwnPack("stringr")
 dwnPack("permute")
 dwnPack("fExtremes")
 dwnPack("IRanges")
+dwnPack("ggplot2")
+dwnPack("grid")
 ############################################################################
 #########Create all required directories####################################
 dir_create()
 ############################################################################
 chr_lengths <- chr_proc()
 ############################################################################
+segval_windows = NULL
+segval_windows = seq(0, 2, 0.05)
+min_seg = 50
+pval_sig = 0.05
+num_probes= 50
 
-<<<<<<< Updated upstream
 
 
-=======
-#anaTempVScanNNres <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
+anaTempVScanNNres <- Input_NormNorm_Outcalled_files
+#anaTempVScanNNres <- '/Volumes/Salendra_Work/sxs1528/TCGA/TCGA-GHR37-PRENVE/temp/NorNor/adjusted_logratio_new'
 setwd(anaTempVScanNNres)
->>>>>>> Stashed changes
 
 
 
@@ -43,26 +55,26 @@ setwd(anaTempVScanNNres)
 
 ############################################################################
 if(NormNorm)
-{   
-<<<<<<< Updated upstream
-    anaTempVScanNNres <- Input_NormNorm_adjlogratio_files
-=======
-    anaTempVScanNNres <- Input_NormNorm_GC_COR_LOGRATIO_files
->>>>>>> Stashed changes
-    cn_called_files = filtCDS(anaTempVScanNNres,anaTempVScanNN_OC_CDSFilt)
+{    
+    reqd_files = reqd_files_func(Input_NormNorm_Files_Info)
+    mode_correction(anaTempVScanNNres,anaTempVScanNN_MODE_CRCT)
+    GISTIC <-FALSE
+    filtCDS(anaTempVScanNN_MODE_CRCT,anaTempVScanNN_OC_CDSFilt)
     CBS_seg_samp(anaTempVScanNN_OC_CDSFilt,anaTempVScanNN_CBS_GC_crtd)
     Com_samp_perchr(anaTempVScanNN_CBS_GC_crtd,anaTempVScanNN_NorNor_SegMeans_CDSFilt)
-    Nor_EVD_calc()
+    chr_pos_neg_sep(anaTempVScanNN_NorNor_SegMeans_CDSFilt)
+    Nor_EVD_calc(anaTempVScanNN_NorNor_Pos,anaTempVScanNN_Pos_EVD_Cutoff,anaTempVScanNN_Pos_Tiff_output)
+    Nor_EVD_calc(anaTempVScanNN_NorNor_Neg,anaTempVScanNN_Neg_EVD_Cutoff,anaTempVScanNN_Neg_Tiff_output)
+    TumEVD_cal()
 }  
 ############################################################################
 if(TumNorm)
 {
-<<<<<<< Updated upstream
-  anaTempVScanNNres <- Input_TumNorm_adjlogratio_files
-=======
-  anaTempVScanTNres <- Input_TumNorm_GC_COR_LOGRATIO_files 
->>>>>>> Stashed changes
-  cn_called_files = filtCDS(anaTempVScanTNres,anaTempVScanTN_OC_CDSFilt)
+  reqd_files = reqd_files_func(Input_TumNorm_Files_Info)
+  mode_correction(anaTempVScanTNres,anaTempVScanTN_MODE_CRCT)
+  cn_called_files = called_files(Input_TumNorm_Files_Info)
+  GISTIC <- TRUE
+  filtCDS(anaTempVScanTN_MODE_CRCT,anaTempVScanTN_OC_CDSFilt)
   CBS_seg_samp(anaTempVScanTN_OC_CDSFilt,anaTempVScanTN_CBS_GC_crtd)
   Com_samp_perchr(anaTempVScanTN_CBS_GC_crtd,anaTempVScanTN_TumNor_SegMeans_CDSFilt)
   TumEVD_cal()

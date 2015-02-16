@@ -8,14 +8,13 @@ TumNorm <- FALSE
 Whole_Exome <<- TRUE
 
 
+
+
 # Change the directory to the results obtained from prENVE module 
 
-Input_NormNorm_adjlogratio_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
-Input_TumNorm_adjlogratio_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
+Input_NormNorm_Outcalled_files <- '/Projects/Testing'
+Input_TumNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
 
 
-#
-
-segval_windows = NULL
-segval_windows = seq(0, 1, 0.05)
-min_seg = 50
+Input_NormNorm_Files_Info <- '/Projects/ENVE-1.0-Beta/preENVE/Analysis/Analysis_13_02_2015_13_12/temp/NorNor/NorNor_CalledFiles.txt'
+Input_TumNorm_Files_Info <- '/Projects/ENVE-1.0-Beta/preENVE/Analysis/Analysis_13_02_2015_13_12/temp/TumNor/TumNor_CalledFiles.txt'
