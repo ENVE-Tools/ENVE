@@ -1,23 +1,15 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
 ############################################################################
-enveHome <<- "/projects/ENVE"
-#enveHome <<- getwd()
+enveHome <<- getwd()
 scriptsPath <<-paste(enveHome,"scripts",sep= "/")
 supFiles <<- paste(enveHome,"support_files",sep="/")
 ############################################################################
-
-
-<<<<<<< Updated upstream
-
-
 source(paste(scriptsPath,"engine.R",sep='/'))
 source(paste(scriptsPath,"Settings.txt",sep='/'))
-=======
 ###########################################################################
 source(paste(scriptsPath,"engine7_forupload.R",sep='/'))
 source(paste(scriptsPath,"ENVE_CONF.txt",sep='/'))
->>>>>>> Stashed changes
 source(paste(scriptsPath,"ENVE_RUN_CONF.txt",sep='/'))
 ############################################################################
 
