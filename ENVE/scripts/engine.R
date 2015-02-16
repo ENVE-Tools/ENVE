@@ -240,7 +240,7 @@ chrs = as.matrix(c('chr1',
 
 chr_proc <- function()
 {
-  chr_lengths = read.table("/Projects/ENVE/support_files/chr_lengths_hg19.txt", sep="\t")
+  chr_lengths = read.table(paste(supFiles,"chr_lengths_hg19.txt",sep="/"), sep="\t")
   chr_lengths = as.matrix(chr_lengths)
   return(chr_lengths)
 }
