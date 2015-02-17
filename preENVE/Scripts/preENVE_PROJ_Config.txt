@@ -6,9 +6,13 @@ NormBam <- '/mnt/Data4/local/vxv89/TCGA_COAD_BAM_Files/TCGA-RMDUP-BAM/Normal'
 #=======
 # Directory for where BAM files for Tumor Samples are saved
 TumBam <- '/mnt/Data4/local/vxv89/TCGA_COAD_BAM_Files/TCGA-RMDUP-BAM/Tumor'
-# Pointer to the Samplesheet
 
+
+
+# Samp Info file which includes the required information about samples (follow the headers and format of the provided Sample Info Sheet) 
 samp_info_file <- '/Projects/prENVE/test_samp.txt'
+
+
 # Number of Norm Samples to include for EVD calculation
 Number_of_samp = 77
 

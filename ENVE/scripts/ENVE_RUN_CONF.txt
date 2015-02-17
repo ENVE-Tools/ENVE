@@ -1,6 +1,6 @@
 # Change the parameters to true if you want to do perform operation on Normal-Normal paired data or Tumor-Normal paired data or both
 NormNorm <- TRUE
-TumNorm <- FALSE
+TumNorm <- TRUE
 
 
 #Change the following parameter to TRUE if working on Whole Genome Sequences
