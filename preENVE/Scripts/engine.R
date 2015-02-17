@@ -129,6 +129,15 @@ samp_info_proc <- function(z)
     {
       #print(smp_info[i,6])
       smp_info[i,7] = gsub(smp_info[i,7],"Female",smp_info[i,7])
+    }else{
+      print(paste("The gender information is inferred for the sample",smp_info[i,1]))
+      ychrtochr22 <- as.numeric(system(paste(paste(samTools,"samtools",sep="/"),"idxstats",paste(NormBam,smp_info[i,2],sep='/'),"|grep '^Y'|cut -f3",sep=" "),intern=T))/as.numeric(system(paste(paste(samTools,"samtools",sep="/"),"idxstats",paste(NormBam,smp_info[i,2],sep='/'),"|grep '^22'|cut -f3",sep=" "),intern=T))
+      if(ychrtochr22 >= 0.05)
+      {
+        smp_info[i,7] = "Male"
+      }else{
+        smp_info[i,7] = "Female"
+      }
     }
   }
   ###########
