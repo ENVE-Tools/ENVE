@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="ENVE (Version:0.99) : ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way.">
+    <meta name="description" content="ENVE (Version:0.9.0) : Extreme Value Distribution Based Somatic Copy-Number Variation Estimation ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>ENVE (Version:0.99)</title>
+    <title>ENVE (Version:0.9.0)</title>
   </head>
 
   <body>
@@ -18,8 +18,8 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/sxs1528/ENVE">View on GitHub</a>
 
-          <h1 id="project_title">ENVE (Version:0.99)</h1>
-          <h2 id="project_tagline">ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way.</h2>
+          <h1 id="project_title">ENVE (Version:0.9.0)</h1>
+          <h2 id="project_tagline">Extreme Value Distribution Based Somatic Copy-Number Variation Estimation </h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/sxs1528/ENVE/zipball/master">Download this project as a .zip file</a>
@@ -31,32 +31,57 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
-
-<p>ENVE is a tool which first models inherent noise in WES data using non-tumor diploid samples, and utilizes the learned model parameters to estimate sCNAs in tumors in an unbiased way. The ENVE methodology, in general, consists of two major modules, which include capturing and modeling the inherent noise (sample- and technical-associated variability) in whole-exome sequencing data using non-tumor diploid normal samples, followed by utilizing the learned model parameters to reliably detect somatic copy-number alterations in tumors.</p>
-
-<h3>
-<a id="the-key-features-of-enve-include" class="anchor" href="#the-key-features-of-enve-include" aria-hidden="true"><span class="octicon octicon-link"></span></a>The key features of ENVE include</h3>
-
-<ul>
-<li>Empirical quantification inherent noise in WES data using random normal-normal combinations of diploid samples.</li>
-<li>Use of three independent measures to differentiate between segmental LogRatio variations associated with inherent noise versus germline CNVs within these normal-normal comparisons.</li>
-<li>Modeling extreme deviations of chromosome-specific LogRatios associated with inherent noise within the diploid normal-normal comparisons by using a generalized extreme value distribution.</li>
-<li>By use of these learned model parameters, to evaluate somatic copy-number alterations in tumor samples.</li>
-</ul>
+        <h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Introduction</strong>
+</h1>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a id="enve-is-a-novel-and-robust-methodology-for-detecting-somatic-copy-number-alterations-in-massively-parallel-dna-sequencing-data-derived-from-stromal-admixed-clinical-samples---enve-models-inherent-noise-in-whole-exome-sequencing-data-using-non-malignant-tissue-samples-and-utilizes-the-learned-model-for-robust-estimation-of-scnas-in-tumors" class="anchor" href="#enve-is-a-novel-and-robust-methodology-for-detecting-somatic-copy-number-alterations-in-massively-parallel-dna-sequencing-data-derived-from-stromal-admixed-clinical-samples---enve-models-inherent-noise-in-whole-exome-sequencing-data-using-non-malignant-tissue-samples-and-utilizes-the-learned-model-for-robust-estimation-of-scnas-in-tumors" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<strong>ENVE</strong> is a novel and robust methodology for detecting somatic copy-number alterations in massively parallel DNA sequencing data derived from stromal-admixed clinical samples.   ENVE models inherent noise in whole-exome sequencing data using non-malignant tissue samples, and utilizes the learned model for robust estimation of sCNAs in tumors.</h3>
 
-<p>Feel free to contact Salendra Singh(<a href="https://github.com/sxs1528" class="user-mention">@sxs1528</a>) by sending me a mail at <a href="mailto:sxs1528@case.edu">sxs1528@case.edu</a>. I will try to sort out the problems as soon as possible. </p>
+<h1></h1>
+
+<h2>
+<a id="the-key-features-of-enve-include" class="anchor" href="#the-key-features-of-enve-include" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>The key features of ENVE include</strong>
+</h2>
+
+<h5>
+<a id="-accounts-for-and-models-both-technical--and-sample-associated-variability-in-whole-exome-sequencing-data-using-non-tumor-diploid-normal-samples" class="anchor" href="#-accounts-for-and-models-both-technical--and-sample-associated-variability-in-whole-exome-sequencing-data-using-non-tumor-diploid-normal-samples" aria-hidden="true"><span class="octicon octicon-link"></span></a>* Accounts for and models both technical- and sample-associated variability in whole-exome sequencing data using non-tumor diploid normal samples</h5>
+
+<h5>
+<a id="-reliably-detects-copy-number-alterations-among-clinical-samples-with-varying-stromal-admixture-without-the-need-for-estimating-tumor-ploidy-or-content" class="anchor" href="#-reliably-detects-copy-number-alterations-among-clinical-samples-with-varying-stromal-admixture-without-the-need-for-estimating-tumor-ploidy-or-content" aria-hidden="true"><span class="octicon octicon-link"></span></a>* Reliably detects copy-number alterations among clinical samples with varying stromal admixture without the need for estimating tumor ploidy or content</h5>
+
+<h5>
+<a id="-performs-robust-somatic-copy-number-estimation-using-either-matched-or-unmatched-tumor-normal-samples-in-an-unbiased-manner" class="anchor" href="#-performs-robust-somatic-copy-number-estimation-using-either-matched-or-unmatched-tumor-normal-samples-in-an-unbiased-manner" aria-hidden="true"><span class="octicon octicon-link"></span></a>* Performs robust somatic copy-number estimation using either matched or unmatched tumor-normal samples in an unbiased manner</h5>
+
+<h5>
+<a id="-by-use-of-these-learned-model-parameters-to-evaluate-somatic-copy-number-alterations-in-tumor-samples" class="anchor" href="#-by-use-of-these-learned-model-parameters-to-evaluate-somatic-copy-number-alterations-in-tumor-samples" aria-hidden="true"><span class="octicon octicon-link"></span></a>* By use of these learned model parameters, to evaluate somatic copy-number alterations in tumor samples.</h5>
+
+<h5>
+<a id="-requires-no-a-priori-parameters-or-user-intervention" class="anchor" href="#-requires-no-a-priori-parameters-or-user-intervention" aria-hidden="true"><span class="octicon octicon-link"></span></a>* Requires no a priori parameters or user-intervention.</h5>
+
+<h5>
+<a id="-is-applicable-across-deep-sequencing-platforms-and-tissue-types" class="anchor" href="#-is-applicable-across-deep-sequencing-platforms-and-tissue-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>* Is applicable across deep sequencing platforms and tissue types.</h5>
+
+<h5>
+<a id="-is-implemented-to-be-easily-portable-requiring-lightweight-computational-resources" class="anchor" href="#-is-implemented-to-be-easily-portable-requiring-lightweight-computational-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>* Is implemented to be easily portable, requiring lightweight computational resources.</h5>
+
+<h1></h1>
+
+<h2>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h2>
+
+<h3>
+<a id="contact--salendra-singh-----email--sxs1528caseedu" class="anchor" href="#contact--salendra-singh-----email--sxs1528caseedu" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<strong>Contact : Salendra Singh</strong>     <strong>Email : <a href="mailto:sxs1528@case.edu">sxs1528@case.edu</a></strong>
+</h3>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">ENVE (Version:0.99) maintained by <a href="https://github.com/sxs1528">sxs1528</a></p>
+        <p class="copyright">ENVE (Version:0.9.0) maintained by <a href="https://github.com/sxs1528">sxs1528</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
