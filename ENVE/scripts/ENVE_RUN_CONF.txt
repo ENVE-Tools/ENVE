@@ -12,9 +12,9 @@ Whole_Exome <<- TRUE
 
 # Change the directory to the results obtained from prENVE module 
 
-Input_NormNorm_Outcalled_files <- '/Projects/Testing'
+Input_NormNorm_Outcalled_files <- '/Projects/BRC_exomes/BRC_EXOME_PREENVE/adjusted_logratio'
 Input_TumNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/copycaller_res'
 
 
-Input_NormNorm_Files_Info <- '/Projects/ENVE-1.0-Beta/preENVE/Analysis/Analysis_13_02_2015_13_12/temp/NorNor/NorNor_CalledFiles.txt'
-Input_TumNorm_Files_Info <- '/Projects/ENVE-1.0-Beta/preENVE/Analysis/Analysis_13_02_2015_13_12/temp/TumNor/TumNor_CalledFiles.txt'
+Input_NormNorm_Files_Info <- '/Projects/BRC_exomes/BRC_EXOME_PREENVE/NorNor_CalledFiles.txt'
+Input_TumNorm_Files_Info <- '/Projects/BRC_exomes/BRC_EXOME_PREENVE/TumNor_CalledFiles.txt'

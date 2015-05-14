@@ -1,20 +1,20 @@
 ######Three_inputs_need_by_the_script
 # Directory where the BAM files for Normal Samples are saved
-NormBam <- '/mnt/Data4/local/vxv89/TCGA_COAD_BAM_Files/TCGA-RMDUP-BAM/Normal'
+NormBam <- '/mnt/Data4/local/vxv89/sxs1528/BRC_SUBSAMPS/Matched_Normal'
 
 
 #=======
 # Directory for where BAM files for Tumor Samples are saved
-TumBam <- '/mnt/Data4/local/vxv89/TCGA_COAD_BAM_Files/TCGA-RMDUP-BAM/Tumor'
+TumBam <- '/mnt/pan/Data16/sxs1528/BRC_Exomes/BRC_BAM/Tumor'
 
 
 
 # Samp Info file which includes the required information about samples (follow the headers and format of the provided Sample Info Sheet) 
-samp_info_file <- '/Projects/prENVE/test_samp.txt'
+samp_info_file <- '/Projects/ENVE-1.0-Beta/preENVE/Analysis/Analysis_05_05_2015_58_09/Input/test_samp.txt'
 
 
 # Number of Norm Samples to include for EVD calculation
-Number_of_samp = 77
+Number_of_samp = 88
 
 
 

@@ -271,6 +271,7 @@ mode_correction <- function(x,y)
 {
   setwd(x)
   input.files = list.files(pattern=".GC_COR_adj_logratio")
+  input.files = gsub(".GC_COR_adj_logratio","",input.files)
   input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
   colnames(input.files) <- "Sample"
   AvailSamps <- merge(input.files,reqd_files, by.input.files='Sample',by.reqd_files='Sample',all=F)
@@ -292,6 +293,7 @@ filtCDS <- function(x,y)
 {
   setwd(x)
   input.files = list.files(pattern=".GC_COR_adj_logratio")
+  input.files = gsub(".GC_COR_adj_logratio","",input.files)
   input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
   colnames(input.files) <- "Sample"
   AvailSamps <- merge(input.files,reqd_files, by.input.files='Sample',by.reqd_files='Sample',all=F)
@@ -319,6 +321,7 @@ filtCDS <- function(x,y)
   {
     setwd(y)
     input.files = list.files(pattern=".FiltCDS")
+    input.files = gsub(".FiltCDS","",input.files)
     input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
     colnames(input.files) <- "Sample"
     AvailSamps <- merge(input.files,reqd_files, by.input.files='Sample',by.reqd_files='Sample',all=F)
@@ -356,6 +359,7 @@ CBS_seg_samp <- function(x,y)
 {
   setwd(x)
   input.files = list.files(pattern=".FiltCDS")
+  input.files = gsub(".FiltCDS","",input.files)
   input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
   colnames(input.files) <- "Sample"
   AvailSamps <- merge(input.files,reqd_files, by.input.files='Sample',by.reqd_files='Sample',all=F)
@@ -368,7 +372,7 @@ CBS_seg_samp <- function(x,y)
     cn <- read.table(filcna,header=F)
     cn = as.matrix(cn)
     cn = str_replace_all(cn, " ", "")
-    CNA.object <-CNA(genomdat = as.numeric(cn[,4]), chrom = cn[,1], maploc = as.numeric(cn[,2]), data.type = 'logratio', sampleid=sampcna)
+    CNA.object <-CNA(genomdat = as.numeric(cn[,4]), chrom = cn[,1], maploc = as.numeric(cn[,2]), data.type = 'logratio', sampleid=AvailSamps[i,1])
     CNA.smoothed <- smooth.CNA(CNA.object)
     segs <- segment(CNA.smoothed, verbose=0, min.width=2, undo.splits = "sdundo", undo.SD=3)
     segs2 = segs$output
@@ -381,7 +385,8 @@ CBS_seg_samp <- function(x,y)
 Com_samp_perchr <- function(x,y)
 {
   setwd(x)
-  input.files = list.files(pattern=".FiltCDS")
+  input.files = list.files(pattern="_CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt")
+  input.files = gsub("_CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt","",input.files)
   input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
   colnames(input.files) <- "Sample"
   AvailSamps <- merge(input.files,reqd_files, by.input.files='Sample',by.reqd_files='Sample',all=F)
@@ -417,8 +422,8 @@ Com_samp_perchr <- function(x,y)
       }
     }
     write.table(chr_out, file=paste(y,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
-    write.table(chr_out[which(as.numeric(chr_out[,6])>0)], file=paste(anaTempVScanNN_NorNor_Pos,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
-    write.table(chr_out[which(as.numeric(chr_out[,6])<0)], file=paste(anaTempVScanNN_NorNor_Neg,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+    #write.table(chr_out[which(as.numeric(chr_out[,6])>0)], file=paste(anaTempVScanNN_NorNor_Pos,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+    #write.table(chr_out[which(as.numeric(chr_out[,6])<0)], file=paste(anaTempVScanNN_NorNor_Neg,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
   }
   ##### END Combine All Samples per chromosome ######
 }
@@ -426,12 +431,22 @@ Com_samp_perchr <- function(x,y)
 chr_pos_neg_sep <- function(x)
 {
   setwd(x)
+  input.files = list.files(pattern="_AllNormNormSamps_SegMeans_CDSFilt.txt")
+  input.files = gsub("_AllNormNormSamps_SegMeans_CDSFilt.txt","",input.files)
+  input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
+  colnames(input.files) <- "Sample"
+  AvailSamps <- intersect(as.matrix(input.files),as.matrix(chrs))
   fil <- NULL
-  for(chrind in 1:length(chrs))
-  {    
-    fil <- read.delim(file=paste(x,paste(chrs[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'),header = F,sep="\t")
-    write.table(fil[which(as.numeric(fil[,6])>0),], file=paste(anaTempVScanNN_NorNor_Pos,paste(chrs[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
-    write.table(fil[which(as.numeric(fil[,6])<0),], file=paste(anaTempVScanNN_NorNor_Neg,paste(chrs[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+  for(chrind in 1:length(AvailSamps))
+  {  
+    file=paste(x,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/')
+    read_test <- file.info(file)$size
+    if(read_test!=0)
+    {
+      fil <- read.delim(file=paste(x,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'),header = F,sep="\t")
+      write.table(fil[which(as.numeric(fil[,6])>0),], file=paste(anaTempVScanNN_NorNor_Pos,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+      write.table(fil[which(as.numeric(fil[,6])<0),], file=paste(anaTempVScanNN_NorNor_Neg,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+    } 
   }
 }
 ###################################################################################################################################
@@ -450,6 +465,12 @@ Nor_EVD_calc <- function(x,y,z)
   entropy_coverage_AllChrs <<- NULL  
   chromosomal_plots <- NULL
   entropy_plots <- NULL
+  input.files = list.files(pattern="_AllNormNormSamps_SegMeans_CDSFilt.txt")
+  input.files = gsub("_AllNormNormSamps_SegMeans_CDSFilt.txt","",input.files)
+  input.files <- as.data.frame(input.files,row.names=NULL, optional=F,stringsAsFactors = F)
+  colnames(input.files) <- "Sample"
+  AvailSamps <- intersect(as.matrix(input.files),as.matrix(chrs))
+  chrs <- AvailSamps
   for(chrind in 1:(length(chrs)))
     {
       print(paste("chr : ",chrind,sep=' '))
@@ -498,14 +519,14 @@ Nor_EVD_calc <- function(x,y,z)
   
       #identify minimum segval means that have at least 10 chromosomal windows with non-zero frequency 
       #this gives us the maximum mean segval for which we want to analyze the distribution of reads
-      nonNA_segval_windows_index = which(apply(chr_winds_overlap_freq_matrix,1,function(x) length(x)-length(which(is.na(x))))>=10)
-      nonNA_chr_winds_overlap_freq_matrix = chr_winds_overlap_freq_matrix[nonNA_segval_windows_index,]
-      chr_winds_overlap_entropy_nonNA = chr_winds_overlap_entropy[nonNA_segval_windows_index]
-      nonNA_segval_windows = segval_windows[nonNA_segval_windows_index]
+      nonNA_segval_windows_index <<- which(apply(chr_winds_overlap_freq_matrix,1,function(x) length(x)-length(which(is.na(x))))>=10)
+      nonNA_chr_winds_overlap_freq_matrix <<- chr_winds_overlap_freq_matrix[nonNA_segval_windows_index,]
+      chr_winds_overlap_entropy_nonNA <<- chr_winds_overlap_entropy[nonNA_segval_windows_index]
+      nonNA_segval_windows <<- segval_windows[nonNA_segval_windows_index]
     
       
       #identify fraction of chromosome that has a non-zero frequency of reads aligning to it for every meansegval cutoff 
-      frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix = apply(nonNA_chr_winds_overlap_freq_matrix,1, function(x)  length(which(x!=0))/length(x))
+      frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix <<- apply(nonNA_chr_winds_overlap_freq_matrix,1, function(x)  length(which(x!=0))/length(x))
       
       ###output fraction of non-zero coverage for chromosome
       fraction_nonzero_coverage_AllChrs <<- rbind(fraction_nonzero_coverage_AllChrs, c(chrs[chrind], frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix))
@@ -514,7 +535,7 @@ Nor_EVD_calc <- function(x,y,z)
       ### pick the seg-val cutoff where the genomic coverage drop is maximum  -- WE FOUND THIS BEFORE 
       winind_sig = which.min(diff(frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix))+1
       diff_frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix = NULL
-      diff_frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix = c(NA, -diff(frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix))
+      diff_frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix <<- c(NA, -diff(frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix))
     
       ### if chr fraction at maximum segval is greater than 25%, use all segvals for EVD ###
       if (frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix[length(frac_nonzero_freq_nonNA_chr_winds_overlap_freq_matrix)] >= 0.25){
@@ -768,36 +789,54 @@ TumEVD_cal <- function()
     evd_vals_min = NULL
     chr_out_t_sizeseg_sig_evdpval = NULL
     
-    load(file=paste(anaTempVScanNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
-    evd_vals_abs_max_POS = evd_vals_abs_max
-    rm(evd_vals_abs_max)
+    file_1 <- paste(anaTempVScanNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/')
+    chk_1 <- file.exists(file_1)
+    if(chk_1)
+    {
+      load(file=paste(anaTempVScanNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
+      evd_vals_abs_max_POS = evd_vals_abs_max
+      rm(evd_vals_abs_max)
+    }
     
+    file_2 <- paste(anaTempVScanNN_Neg_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/')
+    chk_2 <- file.exists(file_2)
+    if(chk_2)
+    {
     load(file=paste(anaTempVScanNN_Neg_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
     evd_vals_abs_max_NEG = evd_vals_abs_max
     rm(evd_vals_abs_max)
-    
-    chr_out_t = read.table(paste(tumor_norm_path,paste(chrs[chrind],"_AllNormNormSamps_SegMeans_CDSFilt.txt",sep=""),sep='/'), header=F, sep="\t")
-    
-    inds_large_segs_t = which(chr_out_t[,5] >=min_seg)
-    chr_out_t_sizeseg = chr_out_t[inds_large_segs_t, ]
-    
-    
-    
-    
-    
-    #### ESTIMATE PVAL OF SEGMENT USING NORMAL-NORMAL PAIRS BASED EVD #########
-    chr_out_t_sizeseg_evd_pval = cbind(chr_out_t_sizeseg, matrix(data=NA, ncol = 1, nrow = length(chr_out_t_sizeseg[,1])))
-    for (j in 1:length(chr_out_t_sizeseg_evd_pval[,1])){
-      seg_val_j = chr_out_t_sizeseg_evd_pval[j,6]
-      if (seg_val_j > 0) chr_out_t_sizeseg_evd_pval[j,7] = pgev(abs(seg_val_j), xi=evd_vals_abs_max_POS@fit$par.ests["xi"], mu = evd_vals_abs_max_POS@fit$par.ests["mu"], beta = evd_vals_abs_max_POS@fit$par.ests["beta"], lower.tail=F)[1]
-      if (seg_val_j <= 0) chr_out_t_sizeseg_evd_pval[j,7] = pgev(abs(seg_val_j), xi=evd_vals_abs_max_NEG@fit$par.ests["xi"], mu = evd_vals_abs_max_NEG@fit$par.ests["mu"], beta = evd_vals_abs_max_NEG@fit$par.ests["beta"], lower.tail=F)[1] 
-      #abs_seg_val_j = abs(chr_out_t_sizeseg_evd_pval[j,6])
-      #chr_out_t_sizeseg_evd_pval[j,7] = pgev(abs_seg_val_j, xi=evd_vals_abs_max@fit$par.ests["xi"], mu = evd_vals_abs_max@fit$par.ests["mu"], beta = evd_vals_abs_max@fit$par.ests["beta"], lower.tail=F)[1] 
     }
-    inds_sig_pval = which(chr_out_t_sizeseg_evd_pval[,7] <=pval_sig)
-    chr_out_t_sizeseg_sig_evdpval = chr_out_t_sizeseg_evd_pval[inds_sig_pval,]
-    colnames(chr_out_t_sizeseg_sig_evdpval) = c("Sample_ID", "Chr", "StartPos", "EndPos", "NumMarkers", "SegVal", "ENVE_Pvalue")
-    write.table(chr_out_t_sizeseg_sig_evdpval, file=paste(anaEVDPVal_AS,paste(chrs[chrind], "_MinSeg_", as.character(min_seg), "_EVDPVal_AllSamps.txt", sep=""),sep='/'), sep="\t", row.names=F, col.names=T, quote=F, eol = "\n")
+    
+    
+    file_3 <- paste(tumor_norm_path,paste(chrs[chrind],"_AllNormNormSamps_SegMeans_CDSFilt.txt",sep=""),sep='/')
+    read_test2 <- file.info(file_3)$size
+    if(read_test2!=0)
+    {
+      chr_out_t = read.table(file_3, header=F, sep="\t")
+      inds_large_segs_t = which(chr_out_t[,5] >=min_seg)
+      chr_out_t_sizeseg = chr_out_t[inds_large_segs_t, ]
+      
+      
+      #### ESTIMATE PVAL OF SEGMENT USING NORMAL-NORMAL PAIRS BASED EVD #########
+      chr_out_t_sizeseg_evd_pval = cbind(chr_out_t_sizeseg, matrix(data=NA, ncol = 1, nrow = length(chr_out_t_sizeseg[,1])))
+      for (j in 1:length(chr_out_t_sizeseg_evd_pval[,1])){
+        seg_val_j = chr_out_t_sizeseg_evd_pval[j,6]
+        if (seg_val_j > 0) chr_out_t_sizeseg_evd_pval[j,7] = pgev(abs(seg_val_j), xi=evd_vals_abs_max_POS@fit$par.ests["xi"], mu = evd_vals_abs_max_POS@fit$par.ests["mu"], beta = evd_vals_abs_max_POS@fit$par.ests["beta"], lower.tail=F)[1]
+        if (seg_val_j <= 0) chr_out_t_sizeseg_evd_pval[j,7] = pgev(abs(seg_val_j), xi=evd_vals_abs_max_NEG@fit$par.ests["xi"], mu = evd_vals_abs_max_NEG@fit$par.ests["mu"], beta = evd_vals_abs_max_NEG@fit$par.ests["beta"], lower.tail=F)[1] 
+        #abs_seg_val_j = abs(chr_out_t_sizeseg_evd_pval[j,6])
+        #chr_out_t_sizeseg_evd_pval[j,7] = pgev(abs_seg_val_j, xi=evd_vals_abs_max@fit$par.ests["xi"], mu = evd_vals_abs_max@fit$par.ests["mu"], beta = evd_vals_abs_max@fit$par.ests["beta"], lower.tail=F)[1] 
+      }
+      inds_sig_pval = which(chr_out_t_sizeseg_evd_pval[,7] <=pval_sig)
+      chr_out_t_sizeseg_sig_evdpval = chr_out_t_sizeseg_evd_pval[inds_sig_pval,]
+      colnames(chr_out_t_sizeseg_sig_evdpval) = c("Sample_ID", "Chr", "StartPos", "EndPos", "NumMarkers", "SegVal", "ENVE_Pvalue")
+      write.table(chr_out_t_sizeseg_sig_evdpval, file=paste(anaEVDPVal_AS,paste(chrs[chrind], "_MinSeg_", as.character(min_seg), "_EVDPVal_AllSamps.txt", sep=""),sep='/'), sep="\t", row.names=F, col.names=T, quote=F, eol = "\n")
+    }
+    
+    
+    
+    
+    
+
   }
   
   
@@ -805,8 +844,15 @@ TumEVD_cal <- function()
   All_Chrs_All_Samps_CNA = NULL
   for (chrind in 1:(length(chrs))) {
     fil_in=paste(anaEVDPVal_AS,paste(chrs[chrind], "_MinSeg_", as.character(min_seg), "_EVDPVal_AllSamps.txt", sep=""),sep='/')
-    tmp = read.table(file=fil_in, sep="\t", header=T)
-    All_Chrs_All_Samps_CNA = rbind(All_Chrs_All_Samps_CNA, as.matrix(tmp))
+    if(file.exists(fil_in))
+    {
+      read_test3 <- file.info(fil_in)$size
+      if(read_test3!=0)
+      {
+        tmp = read.table(file=fil_in, sep="\t", header=T)
+        All_Chrs_All_Samps_CNA = rbind(All_Chrs_All_Samps_CNA, as.matrix(tmp))
+      }
+    }
   }
   write.table(All_Chrs_All_Samps_CNA, file=paste(anaRes,paste("AllChrs", "_MinSeg_", as.character(min_seg), "_EVDPVal_AllSamps.txt", sep=""),sep='/'), sep="\t", row.names=F, col.names=T, quote=F, eol = "\n")
   

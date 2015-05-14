@@ -1,15 +1,13 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
 ############################################################################
-enveHome <<- getwd()
+enveHome <<- "/Projects/ENVE-1.0-Beta/ENVE"
+#enveHome <<- getwd()
 scriptsPath <<-paste(enveHome,"scripts",sep= "/")
 supFiles <<- paste(enveHome,"support_files",sep="/")
 ############################################################################
 source(paste(scriptsPath,"engine.R",sep='/'))
 source(paste(scriptsPath,"Settings.txt",sep='/'))
-###########################################################################
-source(paste(scriptsPath,"engine7_forupload.R",sep='/'))
-source(paste(scriptsPath,"ENVE_CONF.txt",sep='/'))
 source(paste(scriptsPath,"ENVE_RUN_CONF.txt",sep='/'))
 ############################################################################
 
@@ -57,7 +55,6 @@ if(NormNorm)
     chr_pos_neg_sep(anaTempVScanNN_NorNor_SegMeans_CDSFilt)
     Nor_EVD_calc(anaTempVScanNN_NorNor_Pos,anaTempVScanNN_Pos_EVD_Cutoff,anaTempVScanNN_Pos_Tiff_output)
     Nor_EVD_calc(anaTempVScanNN_NorNor_Neg,anaTempVScanNN_Neg_EVD_Cutoff,anaTempVScanNN_Neg_Tiff_output)
-    TumEVD_cal()
 }  
 ############################################################################
 if(TumNorm)
