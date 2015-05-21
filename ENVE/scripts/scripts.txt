@@ -17,4 +17,4 @@ Input_TumNorm_Outcalled_files <- '/Volumes/Salendra_Data/Analysis54/temp/NorNor/
 
 
 Input_NormNorm_Files_Info <- '/Projects/BRC_exomes/BRC_EXOME_PREENVE/NorNor_CalledFiles.txt'
-Input_TumNorm_Files_Info <- '/Projects/BRC_exomes/BRC_EXOME_PREENVE/TumNor_CalledFiles.txt'
+Input_TumNorm_Files_Info <- '/Projects/BRC_exomes/BRC_EXOME_PREENVE2/temp/TumNor/TumNor_CalledFiles.txt’

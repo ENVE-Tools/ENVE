@@ -33,16 +33,6 @@ pval_sig = 0.05
 num_probes= 50
 
 
-
-anaTempVScanNNres <- Input_NormNorm_Outcalled_files
-#anaTempVScanNNres <- '/Volumes/Salendra_Work/sxs1528/TCGA/TCGA-GHR37-PRENVE/temp/NorNor/adjusted_logratio_new'
-setwd(anaTempVScanNNres)
-
-
-
-
-
-
 ############################################################################
 if(NormNorm)
 {    
