@@ -1,6 +1,5 @@
 rm(list=ls())
 preENVE <- getwd()
-preENVE <- '/Projects/ENVE-1.0-Beta/preENVE'
 setwd(preENVE)
 
 source(paste(preENVE,"Scripts","engine.R",sep='/'))

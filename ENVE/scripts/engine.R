@@ -398,7 +398,6 @@ Com_samp_perchr <- function(x,y)
       filcna2 <<- AvailSamps[i,2]
       if (chrs[j] != "chrX" & chrs[j] != "chrY"){
         sampcna = AvailSamps[i,1]
-        #setwd("/Projects/ENVE/temp/VarScan_CNA/NormalNormal")
         segs.all.chr <- read.table(paste(sampcna, "CBS_Segments_GC_Corrected_CDSFilt.logRatio.txt", sep="_"),header=F, sep="\t")
         ind_chr = which(segs.all.chr[,1]==chrs[j])
         samp_chr_out =  cbind(matrix(data=sampcna, nrow = length(ind_chr), ncol=1), segs.all.chr[ind_chr,])
@@ -708,7 +707,7 @@ if(T)
   
   
   
-  chr_cent_telo = read.delim("/Projects/ENVE/support_files/hg19_chr_telomere_centromere.txt", sep="\t", header=T)
+  chr_cent_telo = read.delim(paste(supFiles,"hg19_chr_telomere_centromere.txt",sep='/'), sep="\t", header=T)
   chr_cent = chr_cent_telo[which(chr_cent_telo[,"type"]=="centromere"),c(1,2,3)]
   chr_cent[,1] = paste("chr", chr_cent[,1], sep="")
   
