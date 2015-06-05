@@ -1,8 +1,7 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
 ############################################################################
-enveHome <<- "/Projects/ENVE-1.0-Beta/ENVE"
-#enveHome <<- getwd()
+enveHome <<- getwd()
 scriptsPath <<-paste(enveHome,"scripts",sep= "/")
 supFiles <<- paste(enveHome,"support_files",sep="/")
 ############################################################################
