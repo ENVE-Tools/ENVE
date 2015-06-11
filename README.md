@@ -72,21 +72,19 @@ For more information : http://bedtools.readthedocs.org/en/latest/content/install
 * Download the ENVE-1.0 repository
 
 ## preENVE
-* In the subdirectory scripts one need to edit two files 
- * Settings.txt :  This text file have pointers to the required external software and environment packages.   Information required : 
+* In the subdirectory Run_Conf_Files one need to edit preENVE_PROJ_Config.txt 
+ * This text file have pointers to the required external software and environment packages.   
+Information required : 
+    * preENVE : preENVE Home(/location of Enve-master/preENVE)
     * samTools : Directory where the SamTools is installed. 
     * VarScan : Directory where Varscan is installed
     * JAVA_HOME : Directory where Java is installed ( /usr/lib/jvm/jre<version>/bin)
     * hg19_karyo : pointer to the reference fasta file. 
-
 Options( Where TRUE OR FALSE is Required) : 
   * Debug : shows all the table in output
   * BASH : for creating Bash scripts for all individual steps( preferable for smaller batches) 
   * HPC : For future development
   * Com_Scr : If you need all scripts combined together in batches of 8 commands( considering a person using               8 core machine), Its a preferable method for large batches where temp memory will play role of a bottleneck. 
-
-
-preENVE_PROJ_Config : This text file have pointers for input folders. and sample sheet.
    * NormBam : Directory where the BAM files for Normal Samples are saved
    * TumBam : Directory for where BAM files for Tumor Samples are saved
    * samp_info_file : Samp Info file which includes the required information about samples (follow the headers and format of the provided Sample Info Sheet).
@@ -96,31 +94,32 @@ preENVE_PROJ_Config : This text file have pointers for input folders. and sample
 To Run the prENVE Module 
 
 $ cd _directory/to/preENVE_ <br>
-$ R CMD BATCH preENVE.R
+$ RScript preENVE.R [-R] [location to preENVE_PROJ_Config.txt]<br>
+for help : <br>
+$ RScript preENVE.R [-H]
 
 ## ENVE
-* In subdirectory scripts one need to edit two files
-     * Settings.txt : this file contains a field which points to the intersectBed tool present in the bedtools/bin/intersectBed, and needed to be updated.
- 
-     * ENVE_RUN_CONF.TXT : This file consist of information required for running the ENVE module successfully.
-        Options : 
+* In subdirectory Run_Conf_Files one need ENVE_RUN_CONF.txt
+     * This file consist of information required for running the ENVE module successfully.
+        Options 
+        * IntersectBED_path: this file contains a field which points to the intersectBed tool present in the bedtools/bin/intersectBed, and needed to be updated.
         * NormNorm : Option for running the Normal module which develops the model for the ENVE. 
         * TumNorm : Option for running the Module which compares the Tumor Data against the Matched Normal module. 
         * Whole_Exome : If you are running Whole exome samples.
-        
-Information Required : 
-        
- * Input_NormOutcalled_files : pointer to the directory containing the GC corrected adjusted log ratio files for Normal Normal pairs. 
- * Input_TumNorm_Outcalled_files : pointer to the directory containing the GC corrected adjusted log ratio files for Tumor Matched-Normal pairs.
- * Input_NormNorm_Files_Info, Input_TumNorm_Files_Info : File consist of Sample IDs in pair and the gender information. which provides the ENVE module with the required information.( Follow the sample Input_NormNorm_Files_info file for the format).
+        * Input_NormOutcalled_files : pointer to the directory containing the GC corrected adjusted log ratio files for Normal Normal pairs. 
+        * Input_TumNorm_Outcalled_files : pointer to the directory containing the GC corrected adjusted log ratio files for Tumor Matched-Normal pairs.
+        * Input_NormNorm_Files_Info, Input_TumNorm_Files_Info : File consist of Sample IDs in pair and the gender information. which provides the ENVE module with the required information.( Follow the sample Input_NormNorm_Files_info file for the format).
    
 
 To Run the ENVE Module 
 
 $ cd _directory/to/ENVE_ <br>
-$ R CMD BATCH ENVE.R
+$ Rscript ENVE.R [-R] [ENVE_RUN_CONF.txt] <br>
+for help : <br>
+$ RScript ENVE.R [-H] <br>
 
 The results file be stored in analysis folder with the analysis name with timestamp. all the required and intermediate files can be found in temp folder.
+
 
 ==============================================================================================================================
 ###Understanding the Results
