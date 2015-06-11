@@ -137,10 +137,10 @@ If not using preENVE module to create GC corrected log ratio, one need to provid
 
 ###ENVE
   1. Tiff Files
-     * location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/Tiff_output
+     * location : analysis/temp/NorNor/LogRatio_CNA/NormalNormal/Tiff_output
      * these files shows the Absolute LogRatio Thresholds for each chromosome and the segments which are above the threshold. 
   2. EVD_cutoff 
-      * location : analysis/temp/NorNor/VarScan_CNA/NormalNormal/EVD_cutoff/
+      * location : analysis/temp/NorNor/LogRatio_CNA/NormalNormal/EVD_cutoff/
       *  this file includes the Absolute LogRatio Thresholds for each chromosome
 
   3. Results.txt
