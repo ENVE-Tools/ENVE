@@ -98,38 +98,38 @@ dir_create <- function()
   #anaInpBamsNorm <<-paste(anaInp,"Normal_BAMs",sep='/')
   #anaInpBamsTum <<-paste(anaInp,"Tumor_BAMs",sep='/')
   anaTemp <<-paste(anaPath,"temp",sep='/')
-  anaTempVScan <<-paste(anaTemp,"VarScan_CNA",sep='/')
-  anaTempVScanNN <<-paste(anaTempVScan,"NormalNormal",sep='/')
+  anaTempLR <<-paste(anaTemp,"LogRatio_CNA",sep='/')
+  anaTempLRNN <<-paste(anaTempLR,"NormalNormal",sep='/')
   anaRes <<- paste(anaPath,"Results",sep='/')
   anaEVDPVal_AS <<- paste(anaTemp,"EVDPVal_AllSamps",sep='/')
   
   
   
-  anaTempVScanNNres <<-paste(anaTempVScanNN,"VarScan_Results",sep='/')
-  anaTempVScanNN_MODE_CRCT <<- paste(anaTempVScanNN,"Mode_Corrected_files",sep='/')
-  anaTempVScanNN_CBS_GC_crtd <<-paste(anaTempVScanNN,"CBS_Segments_GC_Corrected_CDSFilt",sep='/')
-  anaTempVScanNN_NorNor_SegMeans_CDSFilt <<-paste(anaTempVScanNN,"chr_ALLNormNorm",sep='/')
-  anaTempVScanNN_NorNor_Pos <<-paste(anaTempVScanNN,"chr_ALLNormNorm_Pos",sep='/')
-  anaTempVScanNN_NorNor_Neg <<-paste(anaTempVScanNN,"chr_ALLNormNorm_Neg",sep='/')
-  anaTempVScanNN_OC_CDSFilt <<- paste(anaTempVScanNN,"VScanCC_OC_FiltCDS",sep='/')
-  anaTempVScanNN_Tiff_output<<- paste(anaTempVScanNN,"TIFF_output",sep='/')
-  anaTempVScanNN_EVD_Cutoff <<-paste(anaTempVScanNN,"EVD_cutoff",sep='/')
-  anaTempVScanNN_Pos_Tiff_output<<- paste(anaTempVScanNN,"Pos_TIFF_output",sep='/')
-  anaTempVScanNN_Pos_EVD_Cutoff <<-paste(anaTempVScanNN,"Pos_EVD_cutoff",sep='/')
-  anaTempVScanNN_Neg_Tiff_output<<- paste(anaTempVScanNN,"Neg_TIFF_output",sep='/')
-  anaTempVScanNN_Neg_EVD_Cutoff <<-paste(anaTempVScanNN,"Neg_EVD_cutoff",sep='/')
+  anaTempLRNNres <<-paste(anaTempLRNN,"Logratio_Results",sep='/')
+  anaTempLRNN_MODE_CRCT <<- paste(anaTempLRNN,"Mode_Corrected_files",sep='/')
+  anaTempLRNN_CBS_GC_crtd <<-paste(anaTempLRNN,"CBS_Segments_GC_Corrected_CDSFilt",sep='/')
+  anaTempLRNN_NorNor_SegMeans_CDSFilt <<-paste(anaTempLRNN,"chr_ALLNormNorm",sep='/')
+  anaTempLRNN_NorNor_Pos <<-paste(anaTempLRNN,"chr_ALLNormNorm_Pos",sep='/')
+  anaTempLRNN_NorNor_Neg <<-paste(anaTempLRNN,"chr_ALLNormNorm_Neg",sep='/')
+  anaTempLRNN_OC_CDSFilt <<- paste(anaTempLRNN,"LogRatioCC_OC_FiltCDS",sep='/')
+  anaTempLRNN_Tiff_output<<- paste(anaTempLRNN,"TIFF_output",sep='/')
+  anaTempLRNN_EVD_Cutoff <<-paste(anaTempLRNN,"EVD_cutoff",sep='/')
+  anaTempLRNN_Pos_Tiff_output<<- paste(anaTempLRNN,"Pos_TIFF_output",sep='/')
+  anaTempLRNN_Pos_EVD_Cutoff <<-paste(anaTempLRNN,"Pos_EVD_cutoff",sep='/')
+  anaTempLRNN_Neg_Tiff_output<<- paste(anaTempLRNN,"Neg_TIFF_output",sep='/')
+  anaTempLRNN_Neg_EVD_Cutoff <<-paste(anaTempLRNN,"Neg_EVD_cutoff",sep='/')
   
   
   
-  anaTempVScanTN <<-paste(anaTempVScan,"TumorNormal",sep='/')
-  anaTempVScanTN_MODE_CRCT <<- paste(anaTempVScanTN,"Mode_Corrected_files",sep='/')
-  anaTempVScanTNres <<-paste(anaTempVScanTN,"VarScan_Results",sep='/')
-  anaTempVScanTN_CBS_GC_crtd <<-paste(anaTempVScanTN,"CBS_Segments_GC_Corrected_CDSFilt",sep='/')
-  anaTempVScanTN_TumNor_SegMeans_CDSFilt <<-paste(anaTempVScanTN,"Norm_vs_Tum_SegMeans_CDSFilt",sep='/')
-  anaTempVScanTN_OC_CDSFilt <<- paste(anaTempVScanTN,"VScanCC_OC_FiltCDS",sep='/')
+  anaTempLRTN <<-paste(anaTempLR,"TumorNormal",sep='/')
+  anaTempLRTN_MODE_CRCT <<- paste(anaTempLRTN,"Mode_Corrected_files",sep='/')
+  anaTempLRTNres <<-paste(anaTempLRTN,"Logratio_Results",sep='/')
+  anaTempLRTN_CBS_GC_crtd <<-paste(anaTempLRTN,"CBS_Segments_GC_Corrected_CDSFilt",sep='/')
+  anaTempLRTN_TumNor_SegMeans_CDSFilt <<-paste(anaTempLRTN,"Norm_vs_Tum_SegMeans_CDSFilt",sep='/')
+  anaTempLRTN_OC_CDSFilt <<- paste(anaTempLRTN,"LogRatioCC_OC_FiltCDS",sep='/')
   
   
-  #anaTempVScanTN_allchr_CDSFilt <<- paste(anaTempVScanNN,"chr_allTNSamps_SegMeans_CDSFilt",sep='/')
+  #anaTempLRTN_allchr_CDSFilt <<- paste(anaTempLRNN,"chr_allTNSamps_SegMeans_CDSFilt",sep='/')
   ################## Insert more dirs######################  
   dirs <- c(enveHome,
             scriptsPath,
@@ -140,27 +140,27 @@ dir_create <- function()
             #anaInpBamsNorm,
             #anaInpBamsTum,
             anaTemp,
-            anaTempVScan,
-            anaTempVScanNN,
-            anaTempVScanNNres,
-            anaTempVScanNN_MODE_CRCT,
-            anaTempVScanNN_CBS_GC_crtd,
-            anaTempVScanNN_NorNor_SegMeans_CDSFilt,
-            anaTempVScanNN_NorNor_Pos,
-            anaTempVScanNN_NorNor_Neg,
-            anaTempVScanNN_Pos_Tiff_output,
-            anaTempVScanNN_Pos_EVD_Cutoff,
-            anaTempVScanNN_Neg_Tiff_output,
-            anaTempVScanNN_Neg_EVD_Cutoff,
-            anaTempVScanNN_OC_CDSFilt,
-            anaTempVScanNN_Tiff_output,
-            anaTempVScanNN_EVD_Cutoff,
-            anaTempVScanTN,
-            anaTempVScanTNres,
-            anaTempVScanTN_MODE_CRCT,
-            anaTempVScanTN_CBS_GC_crtd,
-            anaTempVScanTN_TumNor_SegMeans_CDSFilt,
-            anaTempVScanTN_OC_CDSFilt,
+            anaTempLR,
+            anaTempLRNN,
+            anaTempLRNNres,
+            anaTempLRNN_MODE_CRCT,
+            anaTempLRNN_CBS_GC_crtd,
+            anaTempLRNN_NorNor_SegMeans_CDSFilt,
+            anaTempLRNN_NorNor_Pos,
+            anaTempLRNN_NorNor_Neg,
+            anaTempLRNN_Pos_Tiff_output,
+            anaTempLRNN_Pos_EVD_Cutoff,
+            anaTempLRNN_Neg_Tiff_output,
+            anaTempLRNN_Neg_EVD_Cutoff,
+            anaTempLRNN_OC_CDSFilt,
+            anaTempLRNN_Tiff_output,
+            anaTempLRNN_EVD_Cutoff,
+            anaTempLRTN,
+            anaTempLRTNres,
+            anaTempLRTN_MODE_CRCT,
+            anaTempLRTN_CBS_GC_crtd,
+            anaTempLRTN_TumNor_SegMeans_CDSFilt,
+            anaTempLRTN_OC_CDSFilt,
             anaRes,
             anaEVDPVal_AS
   )
@@ -171,27 +171,27 @@ dir_create <- function()
                                 'ana',
                                 'anaPath',
                                 'anaTemp',
-                                'anaTempVScan',
-                                'anaTempVScanNN',
-                                'anaTempVScanNNres',
-                                'anaTempVScanNN_MODE_CRCT',
-                                'anaTempVScanNN_CBS_GC_crtd',
-                                'anaTempVScanNN_NorNor_SegMeans_CDSFilt',
-                                'anaTempVScanNN_NorNor_Pos',
-                                'anaTempVScanNN_NorNor_Neg',
-                                'anaTempVScanNN_Pos_Tiff_output',
-                                'anaTempVScanNN_Pos_EVD_Cutoff',
-                                'anaTempVScanNN_Neg_Tiff_output',
-                                'anaTempVScanNN_Neg_EVD_Cutoff',
-                                'anaTempVScanNN_OC_CDSFilt',
-                                'anaTempVScanNN_Tiff_output',
-                                'anaTempVScanNN_EVD_Cutoff',
-                                'anaTempVScanTN',
-                                'anaTempVScanTNres',
-                                'anaTempVScanTN_MODE_CRCT',
-                                'anaTempVScanTN_CBS_GC_crtd',
-                                'anaTempVScanTN_TumNor_SegMeans_CDSFilt',
-                                'anaTempVScanTN_OC_CDSFilt',
+                                'anaTempLR',
+                                'anaTempLRNN',
+                                'anaTempLRNNres',
+                                'anaTempLRNN_MODE_CRCT',
+                                'anaTempLRNN_CBS_GC_crtd',
+                                'anaTempLRNN_NorNor_SegMeans_CDSFilt',
+                                'anaTempLRNN_NorNor_Pos',
+                                'anaTempLRNN_NorNor_Neg',
+                                'anaTempLRNN_Pos_Tiff_output',
+                                'anaTempLRNN_Pos_EVD_Cutoff',
+                                'anaTempLRNN_Neg_Tiff_output',
+                                'anaTempLRNN_Neg_EVD_Cutoff',
+                                'anaTempLRNN_OC_CDSFilt',
+                                'anaTempLRNN_Tiff_output',
+                                'anaTempLRNN_EVD_Cutoff',
+                                'anaTempLRTN',
+                                'anaTempLRTNres',
+                                'anaTempLRTN_MODE_CRCT',
+                                'anaTempLRTN_CBS_GC_crtd',
+                                'anaTempLRTN_TumNor_SegMeans_CDSFilt',
+                                'anaTempLRTN_OC_CDSFilt',
                                 'anaRes',
                                 'anaEVDPVal_AS'
   ), dirs))
@@ -421,8 +421,8 @@ Com_samp_perchr <- function(x,y)
       }
     }
     write.table(chr_out, file=paste(y,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
-    #write.table(chr_out[which(as.numeric(chr_out[,6])>0)], file=paste(anaTempVScanNN_NorNor_Pos,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
-    #write.table(chr_out[which(as.numeric(chr_out[,6])<0)], file=paste(anaTempVScanNN_NorNor_Neg,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+    #write.table(chr_out[which(as.numeric(chr_out[,6])>0)], file=paste(anaTempLRNN_NorNor_Pos,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+    #write.table(chr_out[which(as.numeric(chr_out[,6])<0)], file=paste(anaTempLRNN_NorNor_Neg,paste(chrs[j],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
   }
   ##### END Combine All Samples per chromosome ######
 }
@@ -443,8 +443,8 @@ chr_pos_neg_sep <- function(x)
     if(read_test!=0)
     {
       fil <- read.delim(file=paste(x,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'),header = F,sep="\t")
-      write.table(fil[which(as.numeric(fil[,6])>0),], file=paste(anaTempVScanNN_NorNor_Pos,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
-      write.table(fil[which(as.numeric(fil[,6])<0),], file=paste(anaTempVScanNN_NorNor_Neg,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+      write.table(fil[which(as.numeric(fil[,6])>0),], file=paste(anaTempLRNN_NorNor_Pos,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
+      write.table(fil[which(as.numeric(fil[,6])<0),], file=paste(anaTempLRNN_NorNor_Neg,paste(AvailSamps[chrind],"AllNormNormSamps_SegMeans_CDSFilt.txt",sep="_"),sep='/'), row.names=F, col.names=F, quote=F, sep="\t", eol="\n")
     } 
   }
 }
@@ -774,9 +774,9 @@ if(F)
 
 TumEVD_cal <- function()
 {
-  setwd(anaTempVScanNN_EVD_Cutoff)
-  tumor_norm_path = anaTempVScanTN_TumNor_SegMeans_CDSFilt
-  tumor_cna_path = anaTempVScanTN_TumNor_SegMeans_CDSFilt
+  setwd(anaTempLRNN_EVD_Cutoff)
+  tumor_norm_path = anaTempLRTN_TumNor_SegMeans_CDSFilt
+  tumor_cna_path = anaTempLRTN_TumNor_SegMeans_CDSFilt
   min_seg = 1
   pval_sig = 1
   
@@ -788,20 +788,20 @@ TumEVD_cal <- function()
     evd_vals_min = NULL
     chr_out_t_sizeseg_sig_evdpval = NULL
     
-    file_1 <- paste(anaTempVScanNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/')
+    file_1 <- paste(anaTempLRNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/')
     chk_1 <- file.exists(file_1)
     if(chk_1)
     {
-      load(file=paste(anaTempVScanNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
+      load(file=paste(anaTempLRNN_Pos_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
       evd_vals_abs_max_POS = evd_vals_abs_max
       rm(evd_vals_abs_max)
     }
     
-    file_2 <- paste(anaTempVScanNN_Neg_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/')
+    file_2 <- paste(anaTempLRNN_Neg_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/')
     chk_2 <- file.exists(file_2)
     if(chk_2)
     {
-    load(file=paste(anaTempVScanNN_Neg_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
+    load(file=paste(anaTempLRNN_Neg_EVD_Cutoff, paste("EVDParams_", chrs[chrind], ".RData", sep=""),sep='/'))
     evd_vals_abs_max_NEG = evd_vals_abs_max
     rm(evd_vals_abs_max)
     }
