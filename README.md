@@ -21,7 +21,7 @@ In this guide we provide easy to follow instructions for installing the ENVE mod
 
 ###Introduction 
 
-This page describes the various system and software required to run the ENVE 1.0
+This page describes the various system and software required to run the ENVE V1.0.0
 
 ###Platforms and System Requirements
 
@@ -69,7 +69,7 @@ For more information : http://bedtools.readthedocs.org/en/latest/content/install
 
 ==============================================================================================================================
 
-* Download the ENVE-1.0 repository
+* Download the ENVE-1.0.0 repository
 
 ## preENVE
 * In the subdirectory Run_Conf_Files one need to edit preENVE_PROJ_Config.txt 
