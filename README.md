@@ -1,4 +1,10 @@
 ##ENVE Version 1.0.0
+
+
+### FOR ANY TECHNICAL SUPPORT CONTACT US AT enve_support@googlegroups.com
+
+==============================================================================================================================
+
 ###Introduction
 ==============================================================================================================================
 
@@ -97,6 +103,8 @@ $ cd _directory/to/preENVE_ <br>
 $ RScript preENVE.R [-R] [location to preENVE_PROJ_Config.txt]<br>
 for help : <br>
 $ RScript preENVE.R [-H]
+
+The preENVE Will provide the user with a combined script with all the required commands, An User then will have to run them on local computer or HPC. 
 
 ## ENVE
 * In subdirectory Run_Conf_Files one need ENVE_RUN_CONF.txt
