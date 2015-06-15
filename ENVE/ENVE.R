@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
-############################################################################
+#########################################################################################################
 run_chk <- function()
 {
   args <- commandArgs(trailingOnly = TRUE)
@@ -43,17 +43,13 @@ run_chk <- function()
     }
   }
 }
-
+################################################################################################################################
 run <- run_chk()
 if(run)
 {
   scriptsPath <<-paste(enveHome,"scripts",sep= "/")
   supFiles <<- paste(enveHome,"support_files",sep="/")
-  ############################################################################
-  source(paste(scriptsPath,"engine.R",sep='/'))
-  ############################################################################
-  
-  
+  source(paste(scriptsPath,"engine.R",sep='/'))  
   ####Check_download_install_check all required R/Bioconductor Packages#######
   dwnPack("DNAcopy")
   dwnPack("stringr")
@@ -62,7 +58,6 @@ if(run)
   dwnPack("IRanges")
   dwnPack("ggplot2")
   dwnPack("grid")
-  ############################################################################
   #########Create all required directories####################################
   dir_create()
   ############################################################################
@@ -73,8 +68,6 @@ if(run)
   min_seg = 50
   pval_sig = 0.05
   num_probes= 50
-  
-  
   ############################################################################
   if(NormNorm)
   {    
