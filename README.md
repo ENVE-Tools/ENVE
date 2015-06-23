@@ -35,7 +35,7 @@ The module performance was tested on two platforms
   * 2.8 GHz Intel Core i7 processor with 8 GB of RAM iMac machine
   * 32-core  2.10 GHz Intel(R) Xeon(R) CPU E5-2450 with 64 GB linux machine
 
-The performance of the script depends on the available memory and number of cores used. ENVE on iMac machine 30 samples( 435 Normal Normal pairs) were processed in around 10 hrs. The performance of ENVE on the multiple core high RAM machine it was less than couple of hours. 
+The performance of the script depends on the available memory and number of cores used. ENVE was able to process a cohort of 30 matched tumor and normal pairs, in under 10 hours on the iMac machine described above. However, the same cohort was processed by ENVE in under 2 hours on the multiple-core, high RAM linux machine.
 
 Hard Disk Space : The module needs around 30 MB of Hard Disk space
 
