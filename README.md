@@ -137,9 +137,9 @@ The results file will be stored in the analysis folder with the analysis name wi
 ### preENVE
 1. combined_Script : It is the set of bash commands needed to get the GC corrected log ratio for a particular pair of samples, this script includes commands to create mpileup using samtools and copynumber information using VarScan.
 
-If user does not need the preENVE module to create GC corrected log ratio, user needs to provide a file which includes chromosome Information with start position and end with the log ratio for the pairs. A sample GC_COR_adj_logratio file is present at /<ENVE_HOME>/ENVE/samples/SAMPLE.GC_COR_adj_logratio
+If user does not need the preENVE module to create GC corrected log ratio, user needs to provide a file which includes chromosome Information with start position and end with the log ratio for the pairs. A sample GC_COR_adj_logratio file is present at ./ENVE_HOME/ENVE/samples/SAMPLE.GC_COR_adj_logratio
 
-2. NorNor_CalledFiles.txt , TumNor_CalledFiles.txt : these file consist of the sample ids and gender information. which is required by ENVE module to understand the pair names and gender information. A sample NorNor_CalledFiles.txt file is present at /<ENVE_HOME>/ENVE/samples/NorNor_CalledFiles.txt
+2. NorNor_CalledFiles.txt , TumNor_CalledFiles.txt : these file consist of the sample ids and gender information. which is required by ENVE module to understand the pair names and gender information. A sample NorNor_CalledFiles.txt file is present at ./ENVE_HOME/ENVE/samples/NorNor_CalledFiles.txt
 
 
 ###ENVE
