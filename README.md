@@ -17,7 +17,7 @@ The key features of ENVE include
 * By use of these learned model parameters, to evaluate somatic copy-number alterations in tumor samples. 
 
 
-In this guide we provide easy to follow instructions for installing the ENVE module and running the results from prENVE. which usually takes the Bam files and do pair wise comparison to find the log ratios in the form of *.out.called files. 
+In this guide we provide easy to follow instructions for installing the ENVE module and running the results from prENVE, which takes the Bam files and do a pair wise comparison to find the log ratios in the form of *.GC_COR_adj_logratio files. 
 
 ==============================================================================================================================
 
@@ -35,13 +35,13 @@ The module performance was tested on two platforms
   * 2.8 GHz Intel Core i7 processor with 8 GB of RAM iMac machine
   * 32-core  2.10 GHz Intel(R) Xeon(R) CPU E5-2450 with 64 GB linux machine
 
-The performance of the script depends on the available memory and number of cores used. ENVE was able to process a cohort of 30 matched tumor and normal pairs, in under 10 hours on the iMac machine described above. However, the same cohort was processed by ENVE in under 2 hours on the multiple-core, high RAM linux machine.
+The performance of the script depends on the available memory and the number of cores used. ENVE was able to process a cohort of 30 matched tumor and normal pairs, in under 10 hours on the iMac machine described above. However, the same cohort was processed by ENVE in under 2 hours on the multiple-core, high RAM Linux machine.
 
 Hard Disk Space : The module needs around 30 MB of Hard Disk space
 
 ###Software Architecture
 
-The script was developed on the R platform with version 3.1, and it is assumed that the user also use the same for running the script. 
+The script was developed on the R platform with version 3.1, and it is assumed that the user also uses the same for running the script. 
 
 ###Software Requirements
 
@@ -66,9 +66,9 @@ The individual download and Installation guides are available on their respectiv
 
     The following commands will install bedtools in a local directory on an UNIX or OS X machine. 
 
-    * $ curl http://bedtools.googlecode.com/files/BEDTools.v2.17.0.tar.gz > BEDTools.tar.gz
+    * $ curl http://bedtools.googlecode.com/files/BEDTools.v2.21.0.tar.gz > BEDTools.tar.gz
     * $ tar -zxvf BEDTools.tar.gz
-    * $ cd BEDTools-<version>
+    * $ cd BEDTools.v2.21.0
     * $ make
 
 For more information : http://bedtools.readthedocs.org/en/latest/content/installation.html
@@ -110,7 +110,7 @@ The preENVE will provide with the scripts which will generate the required input
 * In subdirectory Run_Conf_Files user needs ENVE_RUN_CONF.txt
      * This file consist of information required for running the ENVE module successfully.
         Options 
-        * IntersectBED_path: this file contains a field which points to the intersectBed tool present in the bedtools/bin/intersectBed, and needed to be updated.
+        * IntersectBED_path: this field points to the intersectBed tool present in the bedtools/bin/intersectBed, and needed to be updated.
         * NormNorm (TRUE/FALSE): Option for running the Normal module which develops the model for the ENVE. 
         * TumNorm (TRUE/FALSE): Option for running the Module which compares the Tumor Data against the Matched Normal module. 
         * Whole_Exome (TRUE/FALSE) : If you are running Whole exome samples.
@@ -126,7 +126,7 @@ $ Rscript ENVE.R [-R] [ENVE_RUN_CONF.txt] <br>
 for help : <br>
 $ RScript ENVE.R [-H] <br>
 
-The results file will be stored in the analysis folder with the analysis name with timestamp. All the required and intermediate files can be found in temp folder.
+The results file will be stored in the analysis folder with the analysis name with a timestamp. All the required and intermediate files can be found in the temp folder.
 
 
 ==============================================================================================================================
@@ -135,11 +135,11 @@ The results file will be stored in the analysis folder with the analysis name wi
 ###Important Files
 
 ### preENVE
-1. combined_Script : It is the set of bash commands needed to get the GC corrected log ratio for a particular pair of samples, this script includes command to create mpileup using samtools and copynumber information using VarScan.
+1. combined_Script : It is the set of bash commands needed to get the GC corrected log ratio for a particular pair of samples, this script includes commands to create mpileup using samtools and copynumber information using VarScan.
 
-If user does not need the preENVE module to create GC corrected log ratio, user needs to provide a file which includes chromosome Information with start position and end with the log ratio for the pairs. (MENTION FILE)
+If user does not need the preENVE module to create GC corrected log ratio, user needs to provide a file which includes chromosome Information with start position and end with the log ratio for the pairs. A sample GC_COR_adj_logratio file is present at /<ENVE_HOME>/ENVE/samples/SAMPLE.GC_COR_adj_logratio
 
-2. NorNor_CalledFiles.txt , TumNor_CalledFiles.txt : these file consist of the sample ids and gender information. which is required by ENVE module to understand the pair names and gender information. 
+2. NorNor_CalledFiles.txt , TumNor_CalledFiles.txt : these file consist of the sample ids and gender information. which is required by ENVE module to understand the pair names and gender information. A sample NorNor_CalledFiles.txt file is present at /<ENVE_HOME>/ENVE/samples/NorNor_CalledFiles.txt
 
 
 ###ENVE
