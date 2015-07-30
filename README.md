@@ -90,9 +90,16 @@ Before starting the ENVE analysis, the user have to arrange the samples in a req
 
 * Arrange all the normal samples and tumor samples in different folders, The user will have to provide these directories to the fields NormBam and TumBam in the preENVE_PROJ_Config.txt. 
 
-* The second important step for running ENVE is to set up the samp_info_file which consist of information like Tumor samples IDs, Tumor Sample BAM File Names, Tumor Sample BAM files uniques Bases Aligned, Matched Normal Samples ID, Normal Samples BAM File Names, Normal BAM files Unique Bases Aligned. and the Gender of the patient. 
+* The second important step for running ENVE is to set up the samp_info_file. This file consist of follwing fields :
+  * NORMAL_SAMPLE_ID	: Normal Samples ID
+  * NORMAL_SAMPLE_BAM	: Normal Samples BAM file names
+  * NORMAL_UQ_BASES_ALIGNED	: Number of unique bases aligned in the normal BAM file. 
+  * TUMOR_SAMPLE_ID	: Tumor Sample ID
+  * TUMOR_SAMPLE_BAM	: Tumor SampleS BAM file names
+  * TUMOR_UQ_BASES_ALIGNED	: Number of unique bases aligned in the tumor BAM file
+  * GENDER : Gender of the patient
  
- * In this file user will need to find the Unique Bases Aligned for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once run successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info_file. 
+ * In this file user will need to find the Unique Bases Aligned(NORMAL_UQ_BASES_ALIGNED,TUMOR_UQ_BASES_ALIGNED)  for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once run successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info_file. 
 
 #### preENVE
 * In the subdirectory Run_Conf_Files user needs to edit preENVE_PROJ_Config.txt 
