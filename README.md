@@ -81,8 +81,18 @@ The individual download and Installation guides are available on their respectiv
 For more information : http://bedtools.readthedocs.org/en/latest/content/installation.html
 
 ==============================================================================================================================
+##Running the preENVE and ENVE
 
 * Download the ENVE-1.0.0 repository
+
+#### Samples preProcessing
+Before starting the ENVE analysis, the user have to arrange the samples in a required fashion. There are few things a person will have to take care of. 
+
+* Arrange all the normal samples and tumor samples in different folders, The user will have to provide these directories to the fields NormBam and TumBam in the preENVE_PROJ_Config.txt. 
+
+* The second important step for running ENVE is to set up the samp_info_file which consist of information like Tumor samples IDs, Tumor Sample BAM File Names, Tumor Sample BAM files uniques Bases Aligned, Matched Normal Samples ID, Normal Samples BAM File Names, Normal BAM files Unique Bases Aligned. and the Gender of the patient. 
+ 
+ * In this file user will need to find the Unique Bases Aligned for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once ran successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info File. 
 
 ## preENVE
 * In the subdirectory Run_Conf_Files user needs to edit preENVE_PROJ_Config.txt 
