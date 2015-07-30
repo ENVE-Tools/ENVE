@@ -92,7 +92,7 @@ Before starting the ENVE analysis, the user have to arrange the samples in a req
 
 * The second important step for running ENVE is to set up the samp_info_file which consist of information like Tumor samples IDs, Tumor Sample BAM File Names, Tumor Sample BAM files uniques Bases Aligned, Matched Normal Samples ID, Normal Samples BAM File Names, Normal BAM files Unique Bases Aligned. and the Gender of the patient. 
  
- * In this file user will need to find the Unique Bases Aligned for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once ran successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info File. 
+ * In this file user will need to find the Unique Bases Aligned for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once run successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info_file. 
 
 ## preENVE
 * In the subdirectory Run_Conf_Files user needs to edit preENVE_PROJ_Config.txt 
