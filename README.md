@@ -94,7 +94,7 @@ Before starting the ENVE analysis, the user have to arrange the samples in a req
  
  * In this file user will need to find the Unique Bases Aligned for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once run successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info_file. 
 
-## preENVE
+#### preENVE
 * In the subdirectory Run_Conf_Files user needs to edit preENVE_PROJ_Config.txt 
  * This text file have pointers to the required external software and environment packages.   
 Information required : 
@@ -123,7 +123,7 @@ $ RScript preENVE.R [-H]
 
 The preENVE will provide with the scripts which will generate the required input files for ENVE. 
 
-## ENVE
+#### ENVE
 * In subdirectory Run_Conf_Files user needs ENVE_RUN_CONF.txt
      * This file consist of information required for running the ENVE module successfully.
         Options 
