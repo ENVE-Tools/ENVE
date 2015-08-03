@@ -13,7 +13,7 @@ Send us email at enve_support@googlegroups.com
 ==============================================================================================================================
 ###Reference
 
-Vinay Varadan, Salendra Singh, Arman Nosrati, Lakshmeswari Ravi, James Lutterbaugh, Jill S. Barnholtz-Sloan, Sanford D. Markowitz, Joseph E. Willis and Kishore Guda, ENVE: a novel computational framework characterizes copy-number mutational landscapes in African American colon cancers, Genome Medicine 2015, 7:69, doi:10.1186/s13073-015-0192-9
+[Vinay Varadan, Salendra Singh, Arman Nosrati, Lakshmeswari Ravi, James Lutterbaugh, Jill S. Barnholtz-Sloan, Sanford D. Markowitz, Joseph E. Willis and Kishore Guda, ENVE: a novel computational framework characterizes copy-number mutational landscapes in African American colon cancers, Genome Medicine 2015, 7:69, doi:10.1186/s13073-015-0192-9](http://www.genomemedicine.com/content/pdf/s13073-015-0192-9.pdf)
 
 ==============================================================================================================================
 ###Introduction
