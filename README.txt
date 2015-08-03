@@ -1,10 +1,21 @@
 ##ENVE Version 1.0.0
 
+##### For Academic/Non-Profit use
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
 
-##### For technical support, send us an email at enve_support@googlegroups.com
+
+##### For Non-Academic/For-Profit use:
+Please contact us at enve_support@googlegroups.com for licensing options. 
+
+##### For Technical Support:
+Send us email at enve_support@googlegroups.com
 
 ==============================================================================================================================
+###Reference
 
+Vinay Varadan, Salendra Singh, Arman Nosrati, Lakshmeswari Ravi, James Lutterbaugh, Jill S. Barnholtz-Sloan, Sanford D. Markowitz, Joseph E. Willis and Kishore Guda, ENVE: a novel computational framework characterizes copy-number mutational landscapes in African American colon cancers, Genome Medicine 2015, 7:69, doi:10.1186/s13073-015-0192-9
+
+==============================================================================================================================
 ###Introduction
 ==============================================================================================================================
 
@@ -74,10 +85,27 @@ The individual download and Installation guides are available on their respectiv
 For more information : http://bedtools.readthedocs.org/en/latest/content/installation.html
 
 ==============================================================================================================================
+##Running the preENVE and ENVE
 
 * Download the ENVE-1.0.0 repository
 
-## preENVE
+#### Samples preProcessing
+Before starting the ENVE analysis, the user have to arrange the samples in a required fashion. There are few things a person will have to take care of. 
+
+* Arrange all the normal samples and tumor samples in different folders, The user will have to provide these directories to the fields NormBam and TumBam in the preENVE_PROJ_Config.txt. 
+
+* The second important step for running ENVE is to set up the samp_info_file. This file consist of follwing fields :
+  * NORMAL_SAMPLE_ID	: Normal Samples ID
+  * NORMAL_SAMPLE_BAM	: Normal Samples BAM file names
+  * NORMAL_UQ_BASES_ALIGNED	: Number of unique bases aligned in the normal BAM file. 
+  * TUMOR_SAMPLE_ID	: Tumor Sample ID
+  * TUMOR_SAMPLE_BAM	: Tumor SampleS BAM file names
+  * TUMOR_UQ_BASES_ALIGNED	: Number of unique bases aligned in the tumor BAM file
+  * GENDER : Gender of the patient
+
+In this file user will need to find the Unique Bases Aligned (NORMAL_UQ_BASES_ALIGNED,TUMOR_UQ_BASES_ALIGNED)  for each BAM file. The easiest way to find them is to run Picard tools calculateHsMetrics. It calculates the set of Hybrid selection specific metrics from an aligned BAM file. More information about calculateHsMetrics can be found on (https:/broadinstitute.github.io/picard/command-line-overview.html). Once run successfully, it will provide a detailed metrics about the BAM file. An user have to take the values for the field PF_UQ_BASES_ALIGNED and enter it in the samp_info_file. 
+
+#### preENVE
 * In the subdirectory Run_Conf_Files user needs to edit preENVE_PROJ_Config.txt 
  * This text file have pointers to the required external software and environment packages.   
 Information required : 
@@ -106,7 +134,7 @@ $ RScript preENVE.R [-H]
 
 The preENVE will provide with the scripts which will generate the required input files for ENVE. 
 
-## ENVE
+#### ENVE
 * In subdirectory Run_Conf_Files user needs ENVE_RUN_CONF.txt
      * This file consist of information required for running the ENVE module successfully.
         Options 
