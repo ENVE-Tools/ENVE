@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
+################################################################################################
 run_chk <- function()
 {
   args <- commandArgs(trailingOnly = TRUE)
@@ -15,8 +16,11 @@ run_chk <- function()
     if(args[1]=="-H")
     {
       preENVE <<- getwd()
+      read_me <<- unlist(strsplit(preENVE,split='/'))
+      read_me <<- paste(read_me[-length(read_me)],collapse='/')
+      
       writeLines(" Usage : Rscript preENVE.R [-R] [ENVE_RUN_CONF(follow the template for creating CONF FILE : /ENVE/scripts/ENVE_RUN_CONF.txt)]\n\t\t\t[-H : for help]")
-      system(paste("cat ",preENVE,"/README.txt",sep=""))
+      system(paste("cat ",read_me,"/README.txt",sep=""))
       return(FALSE)
     }else if(args[1]=="-R")
     {
@@ -44,7 +48,7 @@ run_chk <- function()
 
 run <- run_chk()
 
-
+##################################################################################################
 
 
 

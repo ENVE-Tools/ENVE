@@ -1,4 +1,4 @@
-########################~~~~~~~~~Download Required Package~~~~~~~~~~~~~~~~~########################
+###########~~~~~~~~~Download Required Package~~~~~~~~~~~~~~~~~########################
 dwnPack <- function(x)
 {
   if(!require(x,character.only = TRUE))
@@ -15,7 +15,7 @@ dwnPack <- function(x)
 
 ####################################################################################################
 
-
+View <- if (identical(utils::View, View)) print else View
 
 ##########################~~~~~~~~~~~~~~~~~MultiPlot Function~~~~~~~~~~~~~~~~#######################
 

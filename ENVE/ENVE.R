@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 rm(list=ls())
-############################################################################
+#########################################################################################################
 run_chk <- function()
 {
   args <- commandArgs(trailingOnly = TRUE)
@@ -16,8 +16,10 @@ run_chk <- function()
     if(args[1]=="-H")
     {
       enveHome <<- getwd()
+      read_me <<- unlist(strsplit(enveHome,split='/'))
+      read_me <<- paste(read_me[-length(read_me)],collapse='/')
       writeLines(" Usage : Rscript ENVE.R [-R] [ENVE_RUN_CONF(follow the template for creating CONF FILE : /ENVE/scripts/ENVE_RUN_CONF.txt)]\n\t\t\t[-H : for help]")
-      system(paste("cat ",enveHome,"/README.txt",sep=""))
+      system(paste("cat ",read_me,"/README.txt",sep=""))
       return(FALSE)
     }else if(args[1]=="-R")
     {
@@ -41,17 +43,13 @@ run_chk <- function()
     }
   }
 }
-
+################################################################################################################################
 run <- run_chk()
 if(run)
 {
   scriptsPath <<-paste(enveHome,"scripts",sep= "/")
   supFiles <<- paste(enveHome,"support_files",sep="/")
-  ############################################################################
-  source(paste(scriptsPath,"engine.R",sep='/'))
-  ############################################################################
-  
-  
+  source(paste(scriptsPath,"engine.R",sep='/'))  
   ####Check_download_install_check all required R/Bioconductor Packages#######
   dwnPack("DNAcopy")
   dwnPack("stringr")
@@ -60,7 +58,6 @@ if(run)
   dwnPack("IRanges")
   dwnPack("ggplot2")
   dwnPack("grid")
-  ############################################################################
   #########Create all required directories####################################
   dir_create()
   ############################################################################
@@ -71,8 +68,6 @@ if(run)
   min_seg = 50
   pval_sig = 0.05
   num_probes= 50
-  
-  
   ############################################################################
   if(NormNorm)
   {    

@@ -8,8 +8,6 @@ TumNorm <- FALSE
 Whole_Exome <<- TRUE
 
 
-
-
 # Change the directory to the results obtained from prENVE module 
 
 Input_NormNorm_Outcalled_files <- "/Projects/Testing"
